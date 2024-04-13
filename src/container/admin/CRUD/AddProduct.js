@@ -1,16 +1,46 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import Header from "../../../components/admin/Header";
 import NavUser from "../../../components/admin/NavUser";
-
 const AddProduct = () => {
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [productDescription, setProductDescription] = useState("");
+  const [productImage, setProductImage] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
   const fileInputRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
 
   const handleFileChange = (e) => {
-    console.log(e.target.files[0]);
+    const file = e.target.files[0];
+    setProductImage(file);
+    setPreviewImage(URL.createObjectURL(file));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("name", productName);
+      formData.append("price", productPrice);
+      formData.append("description", productDescription);
+      formData.append("image", productImage);
+      await axios.post("http://localhost:8000/api/addproducts", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      alert("Product added successfully!");
+      navigate("/product");
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to add product. Please try again!");
+    }
   };
 
   return (
@@ -18,14 +48,9 @@ const AddProduct = () => {
       <div>
         <div className="wrapper">
           <div id="overlay" />
-          {/* sidebar start */}
           <Header />
-          {/* sidebar end */}
           <div className="content">
-            {/* top navbar start */}
             <NavUser />
-            {/* top navbar end */}
-            {/* main content start */}
             <main className="bg-secondary bg-opacity-25 min-vh-100">
               <div className="container-fluid p-3 p-md-4">
                 <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
@@ -51,8 +76,7 @@ const AddProduct = () => {
                             <input />
                           </div>
                         </div>
-
-                        <form className="mt-5">
+                        <form className="mt-5" onSubmit={handleSubmit}>
                           <div className="row">
                             <div className="col-md-6">
                               <div className="mb-3">
@@ -66,6 +90,10 @@ const AddProduct = () => {
                                   type="text"
                                   className="form-control"
                                   id="productName"
+                                  value={productName}
+                                  onChange={(e) =>
+                                    setProductName(e.target.value)
+                                  }
                                   placeholder="Enter product name"
                                 />
                               </div>
@@ -80,6 +108,10 @@ const AddProduct = () => {
                                   type="number"
                                   className="form-control"
                                   id="productPrice"
+                                  value={productPrice}
+                                  onChange={(e) =>
+                                    setProductPrice(e.target.value)
+                                  }
                                   placeholder="Enter product price"
                                 />
                               </div>
@@ -93,6 +125,10 @@ const AddProduct = () => {
                                 <textarea
                                   className="form-control"
                                   id="productDescription"
+                                  value={productDescription}
+                                  onChange={(e) =>
+                                    setProductDescription(e.target.value)
+                                  }
                                   rows="3"
                                   placeholder="Enter product description"
                                 ></textarea>
@@ -114,10 +150,30 @@ const AddProduct = () => {
                                     border: "2px dashed #ccc",
                                     borderRadius: "5px",
                                     cursor: "pointer",
+                                    backgroundImage: `url(${previewImage})`,
+                                    backgroundSize: "cover",
+                                    backgroundPosition: "center",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
                                   }}
                                   onClick={handleButtonClick}
                                 >
-                                  {/* Khung */}
+                                  {previewImage ? (
+                                    <img
+                                      src={previewImage}
+                                      alt="Preview"
+                                      style={{
+                                        width: "100%",
+                                        height: "auto",
+                                        marginBottom: "10px",
+                                      }}
+                                    />
+                                  ) : (
+                                    <div className="file-input-label">
+                                      Please Choose File Image
+                                    </div>
+                                  )}
                                 </div>
                                 <input
                                   ref={fileInputRef}
@@ -143,15 +199,6 @@ const AddProduct = () => {
                 </div>
               </div>
             </main>
-            {/* main content end */}
-            {/* footer start */}
-            {/* <footer className="bg-light shadow text-secondary text-center d-flex flex-column flex-md-row justify-content-between p-3 p-md-4">
-              <div>
-                Copyright © 2022 <a href="https://dcodemania.com">DCodeMania</a>
-              </div>
-              <div>Made with ❤️ in India</div>
-            </footer> */}
-            {/* footer end */}
           </div>
         </div>
       </div>

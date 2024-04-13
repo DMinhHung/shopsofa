@@ -64,7 +64,7 @@ const HeaderUser = () => {
                 </a>
               </li>
               <li>
-                <a className="nav-link" href="cart.html">
+                <a className="nav-link" href="/shopping-cart">
                   <img src={cartSvg} />
                 </a>
               </li>

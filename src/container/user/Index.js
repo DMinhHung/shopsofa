@@ -86,7 +86,7 @@ const Index = () => {
             {/* End Column 1 */}
             {/* Start Column 2 */}
             <div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-              <a className="product-item" href="cart.html">
+              <a className="product-item" href="/product-details">
                 <img
                   src={product1Image}
                   className="img-fluid product-thumbnail"
@@ -101,7 +101,7 @@ const Index = () => {
             {/* End Column 2 */}
             {/* Start Column 3 */}
             <div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-              <a className="product-item" href="cart.html">
+              <a className="product-item" href="/product-details">
                 <img
                   src={product2Image}
                   className="img-fluid product-thumbnail"
@@ -116,7 +116,7 @@ const Index = () => {
             {/* End Column 3 */}
             {/* Start Column 4 */}
             <div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-              <a className="product-item" href="cart.html">
+              <a className="product-item" href="/product-details">
                 <img
                   src={product3Image}
                   className="img-fluid product-thumbnail"
