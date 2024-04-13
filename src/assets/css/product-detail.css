@@ -1,0 +1,49 @@
+.product-section{
+    
+}
+.product-content{
+    line-height: 50px;
+}
+.container{
+    font-family: "Gilroy";
+}
+.img-product {
+    border-radius: 10%;
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+}
+
+.title{
+    font-size: 50px;
+    font-weight: 100;
+    line-height: 50px;
+}
+.price{
+    font-size: 30px;
+    font-weight: 200;
+}
+.material{
+    font-size: 25px;
+    font-weight: 100;
+}
+.product-size{
+    font-size: 25px;
+    font-weight: 100;
+}
+
+
+.btn-BuyNow{
+    width:200px;
+}
+.title-description{
+    font-size: 40px;
+    font-weight: 100;
+    margin-bottom: 30px;
+    padding:10px;
+}
+.description-body{
+    font-size: 20px;
+    font-weight: 100;
+    line-height: 50px;
+}

@@ -6,12 +6,13 @@ import About from "./container/user/About";
 import Services from "./container/user/Services";
 import Blog from "./container/user/Blog";
 import Contact from "./container/user/Contact";
-
+import ShoppingCart from "./container/user/ShoppingCart";
+import ProductDetail from "./container/user/ProductDetail";
 //Import CSS and JS
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../src/assets/css/style.css";
 import "../src/assets/css/tiny-slider.css";
-
+import "../src/assets/css/product-detail.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 // import "../src/assets/js/custom.js";
 // import "../src/assets/js/tiny-slider.js";
@@ -27,6 +28,8 @@ const App = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/shopping-cart" element={<ShoppingCart />} />
+          <Route path="/product-details" element={<ProductDetail />} />
         </Routes>
       </div>
     </Router>

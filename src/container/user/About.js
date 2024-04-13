@@ -22,7 +22,7 @@ const About = () => {
                     <a href className="btn btn-secondary me-2">
                       Shop Now
                     </a>
-                    <a href="#" className="btn btn-white-outline">
+                    <a href="/#" className="btn btn-white-outline">
                       Explore
                     </a>
                   </p>

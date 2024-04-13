@@ -10,7 +10,7 @@ const HeaderUser = () => {
         arial-label="Furni navigation bar"
       >
         <div className="container">
-          <a className="navbar-brand" href="index.html">
+          <a className="navbar-brand" href="/">
             Furni<span>.</span>
           </a>
           <button
@@ -64,7 +64,7 @@ const HeaderUser = () => {
                 </a>
               </li>
               <li>
-                <a className="nav-link" href="cart.html">
+                <a className="nav-link" href="/shopping-cart">
                   <img src={cartSvg} />
                 </a>
               </li>
