@@ -1,16 +1,16 @@
 import React from "react";
 
-import userSvg from "../../assets/images/user.svg";
-import cartSvg from "../../assets/images/cart.svg";
+import userSvg from "../../assets/user/images/user.svg";
+import cartSvg from "../../assets/user/images/cart.svg";
 const HeaderUser = () => {
   return (
     <>
       <nav
-        className="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark"
+        className="custom-navbar navbar navbar navbar-expand-md navbar-dark"
         arial-label="Furni navigation bar"
       >
         <div className="container">
-          <a className="navbar-brand" href="index.html">
+          <a className="navbar-brand" href="/">
             Furni<span>.</span>
           </a>
           <button

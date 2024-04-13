@@ -1,20 +1,30 @@
 import React from "react";
 
 import HeaderUser from "../../components/user/HeaderUser";
+import FooterUser from "../../components/user/FooterUser";
 
 //IMG
-import couchImage from "../../assets/images/couch.png";
-import product1Image from "../../assets/images/product-1.png";
-import product2Image from "../../assets/images/product-2.png";
-import product3Image from "../../assets/images/product-3.png";
-import crossSvg from "../../assets/images/cross.svg";
+import couchImage from "../../assets/user/images/couch.png";
+import product1Image from "../../assets/user/images/product-1.png";
+import product2Image from "../../assets/user/images/product-2.png";
+import product3Image from "../../assets/user/images/product-3.png";
+import crossSvg from "../../assets/user/images/cross.svg";
 
-import truckSvg from "../../assets/images/truck.svg";
-import bagSvg from "../../assets/images/bag.svg";
-import supportSvg from "../../assets/images/support.svg";
-import returnSvg from "../../assets/images/return.svg";
-import whychooseusimgSvg from "../../assets/images/why-choose-us-img.jpg";
-import FooterUser from "../../components/user/FooterUser";
+import truckSvg from "../../assets/user/images/truck.svg";
+import bagSvg from "../../assets/user/images/bag.svg";
+import supportSvg from "../../assets/user/images/support.svg";
+import returnSvg from "../../assets/user/images/return.svg";
+import whychooseusimgSvg from "../../assets/user/images/why-choose-us-img.jpg";
+import imgGrid1 from "../../assets/user/images/img-grid-1.jpg";
+import imgGrid2 from "../../assets/user/images/img-grid-2.jpg";
+import imgGrid3 from "../../assets/user/images/img-grid-3.jpg";
+import product1 from "../../assets/user/images/product-1.png";
+import product2 from "../../assets/user/images/product-2.png";
+import product3 from "../../assets/user/images/product-3.png";
+import person1 from "../../assets/user/images/person-1.png";
+import post1 from "../../assets/user/images/post-1.jpg";
+import post2 from "../../assets/user/images/post-2.jpg";
+import post3 from "../../assets/user/images/post-3.jpg";
 
 const Index = () => {
   return (
@@ -204,22 +214,13 @@ const Index = () => {
             <div className="col-lg-7 mb-5 mb-lg-0">
               <div className="imgs-grid">
                 <div className="grid grid-1">
-                  <img
-                    src="../../assets/images/img-grid-1.jpg"
-                    alt="Untree.co"
-                  />
+                  <img src={imgGrid1} alt="Untree.co" />
                 </div>
                 <div className="grid grid-2">
-                  <img
-                    src="../../assets/images/img-grid-2.jpg"
-                    alt="Untree.co"
-                  />
+                  <img src={imgGrid2} alt="Untree.co" />
                 </div>
                 <div className="grid grid-3">
-                  <img
-                    src="../../assets/images/img-grid-3.jpg"
-                    alt="Untree.co"
-                  />
+                  <img src={imgGrid3} alt="Untree.co" />
                 </div>
               </div>
             </div>
@@ -256,11 +257,7 @@ const Index = () => {
             <div className="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
               <div className="product-item-sm d-flex">
                 <div className="thumbnail">
-                  <img
-                    src="../../assets/images/product-1.png"
-                    alt="Image"
-                    className="img-fluid"
-                  />
+                  <img src={product1} alt="Image" className="img-fluid" />
                 </div>
                 <div className="pt-3">
                   <h3>Nordic Chair</h3>
@@ -277,11 +274,7 @@ const Index = () => {
             <div className="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
               <div className="product-item-sm d-flex">
                 <div className="thumbnail">
-                  <img
-                    src="../../assets/images/product-2.png"
-                    alt="Image"
-                    className="img-fluid"
-                  />
+                  <img src={product2} alt="Image" className="img-fluid" />
                 </div>
                 <div className="pt-3">
                   <h3>Kruzo Aero Chair</h3>
@@ -298,11 +291,7 @@ const Index = () => {
             <div className="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
               <div className="product-item-sm d-flex">
                 <div className="thumbnail">
-                  <img
-                    src="../../assets/images/product-3.png"
-                    alt="Image"
-                    className="img-fluid"
-                  />
+                  <img src={product3} alt="Image" className="img-fluid" />
                 </div>
                 <div className="pt-3">
                   <h3>Ergonomic Chair</h3>
@@ -358,7 +347,7 @@ const Index = () => {
                           <div className="author-info">
                             <div className="author-pic">
                               <img
-                                src="../../assets/images/person-1.png"
+                                src={person1}
                                 alt="Maria Jones"
                                 className="img-fluid"
                               />
@@ -373,7 +362,7 @@ const Index = () => {
                     </div>
                   </div>
                   {/* END item */}
-                  <div className="item">
+                  {/* <div className="item">
                     <div className="row justify-content-center">
                       <div className="col-lg-8 mx-auto">
                         <div className="testimonial-block text-center">
@@ -391,7 +380,7 @@ const Index = () => {
                           <div className="author-info">
                             <div className="author-pic">
                               <img
-                                src="../../assets/images/person-1.png"
+                                src={person1}
                                 alt="Maria Jones"
                                 className="img-fluid"
                               />
@@ -404,9 +393,9 @@ const Index = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   {/* END item */}
-                  <div className="item">
+                  {/* <div className="item">
                     <div className="row justify-content-center">
                       <div className="col-lg-8 mx-auto">
                         <div className="testimonial-block text-center">
@@ -424,7 +413,7 @@ const Index = () => {
                           <div className="author-info">
                             <div className="author-pic">
                               <img
-                                src="../../assets/images/person-1.png"
+                                src={person1}
                                 alt="Maria Jones"
                                 className="img-fluid"
                               />
@@ -437,7 +426,7 @@ const Index = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   {/* END item */}
                 </div>
               </div>
@@ -463,11 +452,7 @@ const Index = () => {
             <div className="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
               <div className="post-entry">
                 <a href="#" className="post-thumbnail">
-                  <img
-                    src="../../assets/images/post-1.jpg"
-                    alt="Image"
-                    className="img-fluid"
-                  />
+                  <img src={post1} alt="Image" className="img-fluid" />
                 </a>
                 <div className="post-content-entry">
                   <h3>
@@ -487,11 +472,7 @@ const Index = () => {
             <div className="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
               <div className="post-entry">
                 <a href="#" className="post-thumbnail">
-                  <img
-                    src="../../assets/images/post-2.jpg"
-                    alt="Image"
-                    className="img-fluid"
-                  />
+                  <img src={post2} alt="Image" className="img-fluid" />
                 </a>
                 <div className="post-content-entry">
                   <h3>
@@ -511,11 +492,7 @@ const Index = () => {
             <div className="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
               <div className="post-entry">
                 <a href="#" className="post-thumbnail">
-                  <img
-                    src="../../assets/images/post-3.jpg"
-                    alt="Image"
-                    className="img-fluid"
-                  />
+                  <img src={post3} alt="Image" className="img-fluid" />
                 </a>
                 <div className="post-content-entry">
                   <h3>

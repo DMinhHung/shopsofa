@@ -9,8 +9,8 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
-import sofaImage from "../../assets/images/sofa.png";
-import envelopeoutlineSvg from "../../assets/images/envelope-outline.svg";
+import sofaImage from "../../assets/user/images/sofa.png";
+import envelopeoutlineSvg from "../../assets/user/images/envelope-outline.svg";
 
 const FooterUser = () => {
   return (
