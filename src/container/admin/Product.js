@@ -4,12 +4,14 @@ import NavUser from "../../components/admin/NavUser";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import UpdateProductModal from "../../components/admin/UpdateProductModal";
+import UpdateProductModal from "../admin/Product/UpdateProductModal";
+import AddProductModal from "../admin/Product/AddProductModal";
 
 const Product = () => {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -24,7 +26,7 @@ const Product = () => {
     fetchData();
   }, []);
 
-  //Delete Product
+  // Delete Product
   const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:8000/api/products/${id}`);
@@ -34,15 +36,24 @@ const Product = () => {
     }
   };
 
-  //Open Modal for Update
+  // Open Modal for Update
   const handleUpdate = (product) => {
     console.log("Updating product:", product);
     setSelectedProduct(product);
-    setIsModalOpen(true);
+    setIsUpdateModalOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  // Open Modal for Add
+  const handleAdd = () => {
+    setIsAddModalOpen(true);
+  };
+
+  const handleCloseUpdateModal = () => {
+    setIsUpdateModalOpen(false);
+  };
+
+  const handleCloseAddModal = () => {
+    setIsAddModalOpen(false);
   };
 
   return (
@@ -73,15 +84,12 @@ const Product = () => {
                         </div>
                         <div className="col-6 text-end">
                           <span className="card-text text-end">Search :</span>{" "}
-                          <span></span>
                           <input />
                         </div>
                       </div>
-                      <p className="card-text text-end mt-4">
-                        <a className="btn btn-primary" href="/addproduct">
-                          Add Product
-                        </a>
-                      </p>
+                      <button className="btn btn-primary" onClick={handleAdd}>
+                        Add Product
+                      </button>
                       <table className="table table-hover text-center mt-4">
                         <thead>
                           <tr>
@@ -103,6 +111,7 @@ const Product = () => {
                                 <img
                                   style={{ width: "80px" }}
                                   src={`http://localhost:8000/images/${product.image}`}
+                                  alt={product.name}
                                 />
                               </td>
                               <td>{product.price}</td>
@@ -116,8 +125,6 @@ const Product = () => {
                               </td>
                               <td>
                                 <button onClick={() => handleUpdate(product)}>
-                                  {" "}
-                                  {/* Pass product as parameter */}
                                   <FontAwesomeIcon icon={faPenToSquare} />
                                 </button>
                               </td>
@@ -133,11 +140,14 @@ const Product = () => {
           </main>
         </div>
       </div>
-      {isModalOpen && ( // Render the modal if isModalOpen is true
+      {isUpdateModalOpen && (
         <UpdateProductModal
           product={selectedProduct}
-          onClose={handleCloseModal}
+          onClose={handleCloseUpdateModal}
         />
+      )}
+      {isAddModalOpen && (
+        <AddProductModal show={isAddModalOpen} onClose={handleCloseAddModal} />
       )}
     </div>
   );

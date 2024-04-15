@@ -5,6 +5,8 @@ import HeaderUser from "../../components/user/HeaderUser";
 import FooterUser from "../../components/user/FooterUser";
 
 import AddToCart from "../../assets/user/images/cross.svg";
+import couchImage from "../../assets/user/images/couch.png";
+
 const Shop = () => {
   const [products, setProducts] = useState([]);
 
@@ -12,7 +14,7 @@ const Shop = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8000/api/getproducts"
+          "http://localhost:8000/api/usergetproducts"
         );
         setProducts(response.data);
       } catch (error) {
@@ -35,9 +37,26 @@ const Shop = () => {
               <div className="col-lg-5">
                 <div className="intro-excerpt">
                   <h1>Shop</h1>
+                  <p className="mb-4">
+                    Donec vitae odio quis nisl dapibus malesuada. Nullam ac
+                    aliquet velit. Aliquam vulputate velit imperdiet dolor
+                    tempor tristique.
+                  </p>
+                  <p>
+                    <a href className="btn btn-secondary me-2">
+                      Shop Now
+                    </a>
+                    <a href="#" className="btn btn-white-outline">
+                      Explore
+                    </a>
+                  </p>
                 </div>
               </div>
-              <div className="col-lg-7"></div>
+              <div className="col-lg-7">
+                <div className="hero-img-wrap">
+                  <img src={couchImage} className="img-fluid" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -47,7 +66,10 @@ const Shop = () => {
             <div className="row">
               {products.map((product) => (
                 <div className="col-12 col-md-4 col-lg-3 mb-5">
-                  <a className="product-item" href="#">
+                  <a
+                    className="product-item"
+                    href={`/product-details/${product.id}`}
+                  >
                     <img
                       src={`http://localhost:8000/images/${product.image}`}
                       className="img-fluid product-thumbnail"

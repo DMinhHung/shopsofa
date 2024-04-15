@@ -59,7 +59,7 @@ const HeaderUser = () => {
             </ul>
             <ul className="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
               <li>
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="/login">
                   <img src={userSvg} />
                 </a>
               </li>

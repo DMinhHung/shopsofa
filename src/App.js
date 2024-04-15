@@ -16,7 +16,6 @@ import Contact from "./container/user/Contact";
 //Admin
 import Dashboard from "./container/admin/Dashboard";
 import Product from "./container/admin/Product";
-import AddProduct from "./container/admin/CRUD/AddProduct";
 import User from "./container/admin/User";
 import Employee from "./container/admin/Employee";
 
@@ -28,6 +27,11 @@ import "../src/assets/user/css/style.css";
 import "../src/assets/user/css/tiny-slider.css";
 import "../src/assets/user/css/product-detail.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Checkout from "./container/user/Checkout";
+import Thankyou from "./container/user/Thankyou";
+import NotFoundPage from "./container/user/404";
+import Login from "./container/user/login/Login";
+import Register from "./container/user/login/Register";
 // import "../assets/js/custom.js";
 // import "../assets/js/tiny-slider.js";
 
@@ -39,21 +43,28 @@ const App = () => {
           {/* User */}
           <Route path="/" element={<Index />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/product-details/:id" element={<ProductDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/shopping-cart" element={<ShoppingCart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/thanks" element={<Thankyou />} />
+          <Route path="/404" element={<NotFoundPage />} />
+
+          {/* Login */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
           {/* User */}
+
           {/* Admin */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/product" element={<Product />} />
-          <Route path="/addproduct" element={<AddProduct />} />
           <Route path="/user" element={<User />} />
           <Route path="/employee" element={<Employee />} />
           {/* Admin */}
-          <Route path="/shopping-cart" element={<ShoppingCart />} />
-          <Route path="/product-details" element={<ProductDetail />} />
         </Routes>
       </div>
     </Router>

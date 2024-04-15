@@ -10,11 +10,6 @@ import product2Image from "../../assets/user/images/product-2.png";
 import product3Image from "../../assets/user/images/product-3.png";
 import crossSvg from "../../assets/user/images/cross.svg";
 
-import truckSvg from "../../assets/user/images/truck.svg";
-import bagSvg from "../../assets/user/images/bag.svg";
-import supportSvg from "../../assets/user/images/support.svg";
-import returnSvg from "../../assets/user/images/return.svg";
-import whychooseusimgSvg from "../../assets/user/images/why-choose-us-img.jpg";
 import imgGrid1 from "../../assets/user/images/img-grid-1.jpg";
 import imgGrid2 from "../../assets/user/images/img-grid-2.jpg";
 import imgGrid3 from "../../assets/user/images/img-grid-3.jpg";
@@ -25,6 +20,8 @@ import person1 from "../../assets/user/images/person-1.png";
 import post1 from "../../assets/user/images/post-1.jpg";
 import post2 from "../../assets/user/images/post-2.jpg";
 import post3 from "../../assets/user/images/post-3.jpg";
+import ChooseUs from "../../components/user/ChooseUs";
+import Testimonial from "../../components/user/Testimonial";
 
 const Index = () => {
   return (
@@ -133,80 +130,7 @@ const Index = () => {
         </div>
       </div>
       {/* End Product Section */}
-      {/* Start Why Choose Us Section */}
-      <div className="why-choose-section">
-        <div className="container">
-          <div className="row justify-content-between">
-            <div className="col-lg-6">
-              <h2 className="section-title">Why Choose Us</h2>
-              <p>
-                Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet
-                velit. Aliquam vulputate velit imperdiet dolor tempor tristique.
-              </p>
-              <div className="row my-5">
-                <div className="col-6 col-md-6">
-                  <div className="feature">
-                    <div className="icon">
-                      <img src={truckSvg} alt="Image" className="imf-fluid" />
-                    </div>
-                    <h3>Fast &amp; Free Shipping</h3>
-                    <p>
-                      Donec vitae odio quis nisl dapibus malesuada. Nullam ac
-                      aliquet velit. Aliquam vulputate.
-                    </p>
-                  </div>
-                </div>
-                <div className="col-6 col-md-6">
-                  <div className="feature">
-                    <div className="icon">
-                      <img src={bagSvg} alt="Image" className="imf-fluid" />
-                    </div>
-                    <h3>Easy to Shop</h3>
-                    <p>
-                      Donec vitae odio quis nisl dapibus malesuada. Nullam ac
-                      aliquet velit. Aliquam vulputate.
-                    </p>
-                  </div>
-                </div>
-                <div className="col-6 col-md-6">
-                  <div className="feature">
-                    <div className="icon">
-                      <img src={supportSvg} alt="Image" className="imf-fluid" />
-                    </div>
-                    <h3>24/7 Support</h3>
-                    <p>
-                      Donec vitae odio quis nisl dapibus malesuada. Nullam ac
-                      aliquet velit. Aliquam vulputate.
-                    </p>
-                  </div>
-                </div>
-                <div className="col-6 col-md-6">
-                  <div className="feature">
-                    <div className="icon">
-                      <img src={returnSvg} alt="Image" className="imf-fluid" />
-                    </div>
-                    <h3>Hassle Free Returns</h3>
-                    <p>
-                      Donec vitae odio quis nisl dapibus malesuada. Nullam ac
-                      aliquet velit. Aliquam vulputate.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-5">
-              <div className="img-wrap">
-                <img
-                  src={whychooseusimgSvg}
-                  alt="Image"
-                  className="img-fluid"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* End Why Choose Us Section */}
+      <ChooseUs />
       {/* Start We Help Section */}
       <div className="we-help-section">
         <div className="container">
@@ -310,130 +234,7 @@ const Index = () => {
       </div>
       {/* End Popular Product */}
       {/* Start Testimonial Slider */}
-      <div className="testimonial-section">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-7 mx-auto text-center">
-              <h2 className="section-title">Testimonials</h2>
-            </div>
-          </div>
-          <div className="row justify-content-center">
-            <div className="col-lg-12">
-              <div className="testimonial-slider-wrap text-center">
-                <div id="testimonial-nav">
-                  <span className="prev" data-controls="prev">
-                    <span className="fa fa-chevron-left" />
-                  </span>
-                  <span className="next" data-controls="next">
-                    <span className="fa fa-chevron-right" />
-                  </span>
-                </div>
-                <div className="testimonial-slider">
-                  <div className="item">
-                    <div className="row justify-content-center">
-                      <div className="col-lg-8 mx-auto">
-                        <div className="testimonial-block text-center">
-                          <blockquote className="mb-5">
-                            <p>
-                              “Donec facilisis quam ut purus rutrum lobortis.
-                              Donec vitae odio quis nisl dapibus malesuada.
-                              Nullam ac aliquet velit. Aliquam vulputate velit
-                              imperdiet dolor tempor tristique. Pellentesque
-                              habitant morbi tristique senectus et netus et
-                              malesuada fames ac turpis egestas. Integer
-                              convallis volutpat dui quis scelerisque.”
-                            </p>
-                          </blockquote>
-                          <div className="author-info">
-                            <div className="author-pic">
-                              <img
-                                src={person1}
-                                alt="Maria Jones"
-                                className="img-fluid"
-                              />
-                            </div>
-                            <h3 className="font-weight-bold">Maria Jones</h3>
-                            <span className="position d-block mb-3">
-                              CEO, Co-Founder, XYZ Inc.
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {/* END item */}
-                  {/* <div className="item">
-                    <div className="row justify-content-center">
-                      <div className="col-lg-8 mx-auto">
-                        <div className="testimonial-block text-center">
-                          <blockquote className="mb-5">
-                            <p>
-                              “Donec facilisis quam ut purus rutrum lobortis.
-                              Donec vitae odio quis nisl dapibus malesuada.
-                              Nullam ac aliquet velit. Aliquam vulputate velit
-                              imperdiet dolor tempor tristique. Pellentesque
-                              habitant morbi tristique senectus et netus et
-                              malesuada fames ac turpis egestas. Integer
-                              convallis volutpat dui quis scelerisque.”
-                            </p>
-                          </blockquote>
-                          <div className="author-info">
-                            <div className="author-pic">
-                              <img
-                                src={person1}
-                                alt="Maria Jones"
-                                className="img-fluid"
-                              />
-                            </div>
-                            <h3 className="font-weight-bold">Maria Jones</h3>
-                            <span className="position d-block mb-3">
-                              CEO, Co-Founder, XYZ Inc.
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> */}
-                  {/* END item */}
-                  {/* <div className="item">
-                    <div className="row justify-content-center">
-                      <div className="col-lg-8 mx-auto">
-                        <div className="testimonial-block text-center">
-                          <blockquote className="mb-5">
-                            <p>
-                              “Donec facilisis quam ut purus rutrum lobortis.
-                              Donec vitae odio quis nisl dapibus malesuada.
-                              Nullam ac aliquet velit. Aliquam vulputate velit
-                              imperdiet dolor tempor tristique. Pellentesque
-                              habitant morbi tristique senectus et netus et
-                              malesuada fames ac turpis egestas. Integer
-                              convallis volutpat dui quis scelerisque.”
-                            </p>
-                          </blockquote>
-                          <div className="author-info">
-                            <div className="author-pic">
-                              <img
-                                src={person1}
-                                alt="Maria Jones"
-                                className="img-fluid"
-                              />
-                            </div>
-                            <h3 className="font-weight-bold">Maria Jones</h3>
-                            <span className="position d-block mb-3">
-                              CEO, Co-Founder, XYZ Inc.
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div> */}
-                  {/* END item */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Testimonial />
       {/* End Testimonial Slider */}
       {/* Start Blog Section */}
       <div className="blog-section">

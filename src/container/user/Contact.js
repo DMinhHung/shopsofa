@@ -2,6 +2,8 @@ import React from "react";
 import HeaderUser from "../../components/user/HeaderUser";
 import FooterUser from "../../components/user/FooterUser";
 
+import couchImage from "../../assets/user/images/couch.png";
+
 const Contact = () => {
   return (
     <>
@@ -30,7 +32,7 @@ const Contact = () => {
               </div>
               <div className="col-lg-7">
                 <div className="hero-img-wrap">
-                  <img src="images/couch.png" className="img-fluid" />
+                  <img src={couchImage} className="img-fluid" />
                 </div>
               </div>
             </div>
