@@ -5,6 +5,7 @@ import {
   faTable,
   faCircleUser,
   faArrowRightFromBracket,
+  faCartShopping,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
@@ -71,7 +72,7 @@ const Header = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/employee">
+              <a className="nav-link" href="/ourteam">
                 <span
                   className="icon"
                   data-bs-toggle="tooltip"
@@ -79,7 +80,19 @@ const Header = () => {
                 >
                   <i className="fas fa-cube" />
                 </span>
-                <span className="menu">Employee</span>
+                <span className="menu">OurTeam</span>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/blogad">
+                <span
+                  className="icon"
+                  data-bs-toggle="tooltip"
+                  data-bs-title="Employee"
+                >
+                  <i className="fas fa-cube" />
+                </span>
+                <span className="menu">Blog</span>
               </a>
             </li>
           </div>
@@ -96,6 +109,20 @@ const Header = () => {
               <span className="menu">Users</span>
             </a>
           </li>
+
+          <li className="nav-item">
+            <a className="nav-link" href="/">
+              <span
+                className="icon"
+                data-bs-toggle="tooltip"
+                data-bs-title="Logout"
+              >
+                <FontAwesomeIcon icon={faCartShopping} />
+              </span>
+              <span className="menu">Order</span>
+            </a>
+          </li>
+
           <li className="nav-item">
             <a className="nav-link" href="/">
               <span

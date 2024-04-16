@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HeaderUser from "../../components/user/HeaderUser";
 import FooterUser from "../../components/user/FooterUser";
 
 import couchImage from "../../assets/user/images/couch.png";
 import ChooseUs from "../../components/user/ChooseUs";
 import Testimonial from "../../components/user/Testimonial";
+import axios from "axios";
 
 const About = () => {
+  const [ourteams, setOurTeams] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/getblog");
+        setOurTeams(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <>
       <div>
@@ -54,26 +69,28 @@ const About = () => {
             </div>
             <div className="row">
               {/* Start Column 1 */}
-              <div className="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
-                <img src="images/person_1.jpg" className="img-fluid mb-5" />
-                <h3 clas>
-                  <a href="#">
-                    <span className>Lawson</span> Arnold
-                  </a>
-                </h3>
-                <span className="d-block position mb-4">
-                  CEO, Founder, Atty.
-                </span>
-                <p>
-                  Separated they live in. Separated they live in Bookmarksgrove
-                  right at the coast of the Semantics, a large language ocean.
-                </p>
-                <p className="mb-0">
-                  <a href="#" className="more dark">
-                    Learn More <span className="icon-arrow_forward" />
-                  </a>
-                </p>
-              </div>
+              {ourteams.map((ourteam) => (
+                <div className="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
+                  <img
+                    src={`http://localhost:8000/images/${ourteam.image}`}
+                    className="img-fluid mb-5"
+                  />
+                  <h3 clas>
+                    <a href="#">
+                      <span className>{ourteam.name}</span>
+                    </a>
+                  </h3>
+                  <span className="d-block position mb-4">
+                    CEO, Founder, Atty.
+                  </span>
+                  <p>{ourteam.description}</p>
+                  <p className="mb-0">
+                    <a href="#" className="more dark">
+                      Learn More <span className="icon-arrow_forward" />
+                    </a>
+                  </p>
+                </div>
+              ))}
               {/* End Column 1 */}
               {/* Start Column 2 */}
               <div className="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">

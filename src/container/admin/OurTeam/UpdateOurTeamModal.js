@@ -2,40 +2,39 @@ import React, { useEffect, useRef, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 
-const UpdateProductModal = ({ product, onClose }) => {
+const UpdateOurTeamModal = ({ ourteam, onClose }) => {
   const fileInputRef = useRef(null);
   const [previewImage, setPreviewImage] = useState(null);
-  const [updatedProduct, setUpdatedProduct] = useState({
-    name: product.name,
-    price: product.price,
-    description: product.description,
+  const [updatedOurTeam, setUpdatedOurTeam] = useState({
+    name: ourteam.name,
+    description: ourteam.description,
     image: null,
   });
-
+  console.log(updatedOurTeam);
   useEffect(() => {
-    if (product.image) {
-      setPreviewImage(`http://localhost:8000/images/${product.image}`);
+    if (ourteam.image) {
+      setPreviewImage(`http://localhost:8000/images/${ourteam.image}`);
     }
-  }, [product.image]);
+  }, [ourteam.image]);
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUpdatedProduct((prevProduct) => ({
-      ...prevProduct,
+    setUpdatedOurTeam((prevOurTeam) => ({
+      ...prevOurTeam,
       [name]: value,
     }));
   };
   const handleSubmit = async (e) => {
     try {
       const formData = new FormData();
-      formData.append("name", updatedProduct.name);
-      formData.append("price", updatedProduct.price);
-      formData.append("description", updatedProduct.description);
-      if (updatedProduct.image) {
-        formData.append("image", updatedProduct.image);
+      formData.append("name", updatedOurTeam.name);
+      formData.append("description", updatedOurTeam.description);
+      if (updatedOurTeam.image) {
+        formData.append("image", updatedOurTeam.image);
       }
+      //   console.log(formData);
 
       await axios.post(
-        `http://localhost:8000/api/updateproducts/${product.id}`,
+        `http://localhost:8000/api/updateourteam/${ourteam.id}`,
         formData,
         {
           headers: {
@@ -57,11 +56,13 @@ const UpdateProductModal = ({ product, onClose }) => {
     };
     if (file) {
       reader.readAsDataURL(file);
-      setUpdatedProduct((prevProduct) => ({
-        ...prevProduct,
+      setUpdatedOurTeam((prevOurTeam) => ({
+        ...prevOurTeam,
         image: file,
       }));
     }
+
+    console.log(file);
   };
 
   const handleButtonClick = () => {
@@ -71,47 +72,33 @@ const UpdateProductModal = ({ product, onClose }) => {
   return (
     <Modal show={true} onHide={onClose} size="xl" backdrop="static">
       <Modal.Header closeButton>
-        <Modal.Title>Edit Product</Modal.Title>
+        <Modal.Title>Edit OurTeam</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
-              Product Name
+              Name
             </label>
             <input
               type="text"
               className="form-control"
               id="name"
               name="name"
-              value={updatedProduct.name}
+              value={updatedOurTeam.name}
               onChange={handleChange}
               placeholder="Enter product name"
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="price" className="form-label">
-              Product Price
-            </label>
-            <input
-              type="number"
-              className="form-control"
-              id="price"
-              name="price"
-              value={updatedProduct.price}
-              onChange={handleChange}
-              placeholder="Enter product price"
-            />
-          </div>
-          <div className="mb-3">
             <label htmlFor="description" className="form-label">
-              Product Description
+              Description
             </label>
             <textarea
               className="form-control"
               id="description"
               name="description"
-              value={updatedProduct.description}
+              value={updatedOurTeam.description}
               onChange={handleChange}
               rows="3"
               placeholder="Enter product description"
@@ -119,7 +106,7 @@ const UpdateProductModal = ({ product, onClose }) => {
           </div>
           <div className="mb-3">
             <label htmlFor="image" className="form-label">
-              Product Image
+              Image
             </label>
             <input
               type="file"
@@ -140,7 +127,7 @@ const UpdateProductModal = ({ product, onClose }) => {
                 cursor: "pointer",
                 backgroundImage: `url(${
                   previewImage ||
-                  `http://localhost:8000/images/${product.image}`
+                  `http://localhost:8000/images/${ourteam.image}`
                 })`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
@@ -151,7 +138,7 @@ const UpdateProductModal = ({ product, onClose }) => {
               onClick={handleButtonClick}
             >
               {previewImage ||
-              `http://localhost:8000/images/${product.image}` ? (
+              `http://localhost:8000/images/${ourteam.image}` ? (
                 <img
                   src={previewImage}
                   alt="Preview"
@@ -168,7 +155,7 @@ const UpdateProductModal = ({ product, onClose }) => {
           </div>
           <div className="text-center">
             <Button variant="primary" type="submit">
-              Update Product
+              Update
             </Button>
           </div>
         </form>
@@ -177,4 +164,4 @@ const UpdateProductModal = ({ product, onClose }) => {
   );
 };
 
-export default UpdateProductModal;
+export default UpdateOurTeamModal;

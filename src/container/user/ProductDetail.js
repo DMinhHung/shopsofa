@@ -3,11 +3,13 @@ import HeaderUser from "../../components/user/HeaderUser";
 import FooterUser from "../../components/user/FooterUser";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ProductDetail = () => {
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState(null);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -22,6 +24,22 @@ const ProductDetail = () => {
         setLoading(false); // Đánh dấu rằng dữ liệu đã được tải
       });
   }, [id]);
+
+  const addToCart = () => {
+    axios
+      .post(`http://localhost:8000/api/add-to-cart`, {
+        productId: product.id,
+        quantity: 1,
+      })
+      .then((response) => {
+        console.log("Product added to cart:", response.data);
+        navigate("/shoppingcart");
+      })
+      .catch((error) => {
+        console.error("Error adding product to cart:", error);
+      });
+  };
+  console.log(addToCart);
 
   if (loading) {
     return (
@@ -50,69 +68,122 @@ const ProductDetail = () => {
                 width="400"
                 height="500"
               />
+              <div className="row mt-3">
+                {/* Cố định 4 ảnh nhỏ */}
+                <div className="col-3">
+                  <img
+                    src={`http://localhost:8000/images/small1.jpg`}
+                    alt="Small Image 1"
+                    className="img-thumbnail"
+                  />
+                </div>
+                <div className="col-3">
+                  <img
+                    src={`http://localhost:8000/images/small2.jpg`}
+                    alt="Small Image 2"
+                    className="img-thumbnail"
+                  />
+                </div>
+                <div className="col-3">
+                  <img
+                    src={`http://localhost:8000/images/small3.jpg`}
+                    alt="Small Image 3"
+                    className="img-thumbnail"
+                  />
+                </div>
+                <div className="col-3">
+                  <img
+                    src={`http://localhost:8000/images/small4.jpg`}
+                    alt="Small Image 4"
+                    className="img-thumbnail"
+                  />
+                </div>
+              </div>
             </div>
             <div className="col-lg-7">
               <p className="title">{product.name}</p>
+              <p>Mã:</p>
+              <p>Kích thước:</p>
+              <p>Màu sắc:</p>
+              <p>Chất liệu:</p>
+              <p>Bảo hành:</p>
               <div className="row price">
                 <div className="col-12 col-xs-12">
                   <p>${product.price}</p>
                 </div>
               </div>
-              <div className="row material">
-                <div className="col-2">
-                  <p>Chất liệu:</p>
-                </div>
-                <div className="col-5">
-                  <p>Gỗ hương tự nhiên</p>
-                </div>
-              </div>
-              <div className="row product-size">
-                <div className="col-3">
-                  <p>Kích thước:</p>
-                </div>
-                <div className="col-4">
-                  <p>1m x 1m x 1m</p>
-                </div>
-              </div>
               <div className="row button">
                 <div className="col-4">
-                  <button className="btn btn-AddToShoppingCart" type="button">
+                  <button className="btn-mh" type="button" onClick={addToCart}>
                     Thêm vào giỏ hàng
                   </button>
                 </div>
                 <div className="col-4">
-                  <button className="btn btn-BuyNow" type="button">
+                  <button className="btn-mh" type="button">
                     Mua ngay
                   </button>
                 </div>
               </div>
             </div>
           </div>
-          <div className="description-content-between">
-            <span className="title-description">Mô tả chi tiết sản phẩm</span>
+          <div className="description-content-between mt-5">
+            <h3 className="text-center">Mô Tả</h3>
             <div className="description-body">
-              <div className="row name">
-                <label className="col-1">Chất liệu:</label>
-                <div className="col-5">
-                  <p>Gỗ hương tự nhiên</p>
-                </div>
+              <div className="Description">
+                <h4>Thông tin {product.name}</h4>
+                <p>
+                  Thiết kế theo phong cách mới lạ kết hợp với phần tựa đầu dày
+                  7cm, rộng 31cm tạo cảm giác thoải mái dễ chịu cho người ngồi
+                  tựa đầu. Phần nệm ngồi bằng mút thoáng khí tạo sự êm nhẹ thoải
+                  mái và tốt cho hệ thống tim mạch. Phần lưng thiết kế vải lưới
+                  vô cùng thoáng khí. Phần tay vịn thiết kế hình vòng cung tự
+                  nhiên giúp người ngồi không bị gò bó. Kích thước 60 x 65 x
+                  108-118CM Màu sắc đen
+                </p>
               </div>
-              <div className="row size">
-                <label className="col-2">Kích thước:</label>
-                <div className="col-4">
-                  <p>1m x 1m x 1m</p>
-                </div>
+              <div className="Ưu diểm">
+                <h4>Ưu điểm nổi bật của {product.name}</h4>
+                <p>
+                  Thiết kế hiện đại, sang trọng Piston, gối lưng, tựa đầu đều có
+                  thể tùy chỉnh để có thể điều chỉnh độ cao thấp Ngả lưng đến
+                  155° để có thể nghỉ ngơi thư giãn, hay ngủ luôn tại bàn làm
+                  việc. Ghế Lưới ngả lưng văn phòng, game phù hợp với những dân
+                  văn phòng, các bạn thường xuyên làm việc với máy tính hoặc các
+                  game thủ…
+                </p>
               </div>
-              <div className="row colour">
-                <label className="col-1">Màu:</label>
-                <div className="col-5">
-                  <p>Đen</p>
-                </div>
+              <div className="Chi tiết">
+                <h4>Chi tiết {product.name}</h4>
+                <ul>
+                  <li>Kích thước: Rộng 53cm – sâu 58cm</li>
+                  <li>
+                    Chất liệu: Nhựa PVC, Lưng lưới cotton, đệm mút. Chân nhựa
+                    hoặc thép cường lực mạ crom
+                  </li>
+                  <li>
+                    Kiểu dáng: Loại ghế xoay nhiều chức năng: ngả lưng, gác chân
+                  </li>
+                  <li>
+                    Màu sản phẩm: màu đen - Chức năng Xoay: có - Nâng hạ: có -
+                    Ngả lưng: 155°
+                  </li>
+                </ul>
               </div>
-              <div className="row description">
-                <label className="col-1">Chi tiết:</label>
-                <div className="col-5">
-                  <p>Đa dạng, độc đáo</p>
+              <div className="Thông số">
+                <h4>Thông số</h4>
+                <div className="row">
+                  <div className="col-md-3">
+                    <p>Kích thước</p>
+                    <p>Màu sắc</p>
+                    <p>Chất liệu</p>
+                    <p>Bảo hành</p>
+                  </div>
+                  <div className="col-md-9">
+                    <p>53cm x 58cm</p>
+                    <p>Đen</p>
+                    <p>Nhựa PVC, Lưng lưới cotton, đệm mút</p>
+                    <p>12 tháng</p>
+                  </div>
                 </div>
               </div>
             </div>

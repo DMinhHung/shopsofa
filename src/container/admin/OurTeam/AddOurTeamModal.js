@@ -2,11 +2,11 @@ import React, { useState, useRef } from "react";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 
-const AddProductModal = ({ show, onClose }) => {
-  const [productName, setProductName] = useState("");
-  const [productPrice, setProductPrice] = useState("");
-  const [productDescription, setProductDescription] = useState("");
-  const [productImage, setProductImage] = useState(null);
+const AddOurTeamModal = ({ show, onClose }) => {
+  const [ourteamName, setOurTeamName] = useState("");
+  const [ourteamPosition, setOurTeamPosition] = useState("");
+  const [ourteamDescription, setOurTeamDescription] = useState("");
+  const [ourteamImage, setOurTeamImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const fileInputRef = useRef(null);
 
@@ -16,7 +16,7 @@ const AddProductModal = ({ show, onClose }) => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setProductImage(file);
+    setOurTeamImage(file);
     setPreviewImage(URL.createObjectURL(file));
   };
 
@@ -24,17 +24,16 @@ const AddProductModal = ({ show, onClose }) => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("name", productName);
-      formData.append("price", productPrice);
-      formData.append("description", productDescription);
-      formData.append("image", productImage);
-      await axios.post("http://localhost:8000/api/addproducts", formData, {
+      formData.append("name", ourteamName);
+      formData.append("position", ourteamPosition);
+      formData.append("description", ourteamDescription);
+      formData.append("image", ourteamImage);
+      await axios.post("http://localhost:8000/api/addourteam", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-
-      alert("Product added successfully!");
+      alert("Blog added successfully!");
       onClose();
       window.location.reload();
     } catch (error) {
@@ -46,57 +45,59 @@ const AddProductModal = ({ show, onClose }) => {
   return (
     <Modal show={show} onHide={onClose} size="xl" backdrop="static">
       <Modal.Header closeButton>
-        <Modal.Title>Add Product</Modal.Title>
+        <Modal.Title>Add OurTeam</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="productName" className="form-label">
-              Product Name
+            <label htmlFor="ourteamName" className="form-label">
+              Name
             </label>
             <input
               type="text"
               className="form-control"
-              id="productName"
-              value={productName}
-              onChange={(e) => setProductName(e.target.value)}
-              placeholder="Enter product name"
+              id="ourteamName"
+              value={ourteamName}
+              onChange={(e) => setOurTeamName(e.target.value)}
+              placeholder="Enter ourteam name"
             />
           </div>
+
           <div className="mb-3">
-            <label htmlFor="productPrice" className="form-label">
-              Product Price
+            <label htmlFor="ourteamPosition" className="form-label">
+              Position
             </label>
             <input
-              type="number"
+              type="text"
               className="form-control"
-              id="productPrice"
-              value={productPrice}
-              onChange={(e) => setProductPrice(e.target.value)}
-              placeholder="Enter product price"
+              id="ourteamPosition"
+              value={ourteamPosition}
+              onChange={(e) => setOurTeamPosition(e.target.value)}
+              placeholder="Enter ourteam position"
             />
           </div>
+
           <div className="mb-3">
-            <label htmlFor="productDescription" className="form-label">
-              Product Description
+            <label htmlFor="ourteamDescription" className="form-label">
+              Description
             </label>
             <textarea
               className="form-control"
-              id="productDescription"
-              value={productDescription}
-              onChange={(e) => setProductDescription(e.target.value)}
+              id="ourteamDescription"
+              value={ourteamDescription}
+              onChange={(e) => setOurTeamDescription(e.target.value)}
               rows="3"
-              placeholder="Enter product description"
+              placeholder="Enter ourteam description"
             ></textarea>
           </div>
           <div className="mb-3">
-            <label htmlFor="productImage" className="form-label">
-              Product Image
+            <label htmlFor="ourteamImage" className="form-label">
+              Image
             </label>
             <input
               type="file"
               className="form-control"
-              id="productImage"
+              id="ourteamImage"
               onChange={handleFileChange}
               ref={fileInputRef}
               style={{ display: "none" }}
@@ -135,7 +136,7 @@ const AddProductModal = ({ show, onClose }) => {
           </div>
           <div className="text-center">
             <Button variant="primary" type="submit">
-              Add Product
+              Add OurTeam
             </Button>
           </div>
         </form>
@@ -144,4 +145,4 @@ const AddProductModal = ({ show, onClose }) => {
   );
 };
 
-export default AddProductModal;
+export default AddOurTeamModal;

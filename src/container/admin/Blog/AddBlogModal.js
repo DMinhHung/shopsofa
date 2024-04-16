@@ -2,11 +2,10 @@ import React, { useState, useRef } from "react";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 
-const AddProductModal = ({ show, onClose }) => {
-  const [productName, setProductName] = useState("");
-  const [productPrice, setProductPrice] = useState("");
-  const [productDescription, setProductDescription] = useState("");
-  const [productImage, setProductImage] = useState(null);
+const AddBlogModal = ({ show, onClose }) => {
+  const [blogName, setBlogName] = useState("");
+  const [blogDescription, setBlogDescription] = useState("");
+  const [blogImage, setBlogImage] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
   const fileInputRef = useRef(null);
 
@@ -16,7 +15,7 @@ const AddProductModal = ({ show, onClose }) => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setProductImage(file);
+    setBlogImage(file);
     setPreviewImage(URL.createObjectURL(file));
   };
 
@@ -24,17 +23,15 @@ const AddProductModal = ({ show, onClose }) => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("name", productName);
-      formData.append("price", productPrice);
-      formData.append("description", productDescription);
-      formData.append("image", productImage);
-      await axios.post("http://localhost:8000/api/addproducts", formData, {
+      formData.append("name", blogName);
+      formData.append("description", blogDescription);
+      formData.append("image", blogImage);
+      await axios.post("http://localhost:8000/api/addblog", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-
-      alert("Product added successfully!");
+      alert("Blog added successfully!");
       onClose();
       window.location.reload();
     } catch (error) {
@@ -46,57 +43,45 @@ const AddProductModal = ({ show, onClose }) => {
   return (
     <Modal show={show} onHide={onClose} size="xl" backdrop="static">
       <Modal.Header closeButton>
-        <Modal.Title>Add Product</Modal.Title>
+        <Modal.Title>Add Blog</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="productName" className="form-label">
-              Product Name
+            <label htmlFor="blogName" className="form-label">
+              Blog Name
             </label>
             <input
               type="text"
               className="form-control"
               id="productName"
-              value={productName}
-              onChange={(e) => setProductName(e.target.value)}
-              placeholder="Enter product name"
+              value={blogName}
+              onChange={(e) => setBlogName(e.target.value)}
+              placeholder="Enter blog name"
             />
           </div>
+
           <div className="mb-3">
-            <label htmlFor="productPrice" className="form-label">
-              Product Price
-            </label>
-            <input
-              type="number"
-              className="form-control"
-              id="productPrice"
-              value={productPrice}
-              onChange={(e) => setProductPrice(e.target.value)}
-              placeholder="Enter product price"
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="productDescription" className="form-label">
-              Product Description
+            <label htmlFor="blogDescription" className="form-label">
+              Blog Description
             </label>
             <textarea
               className="form-control"
-              id="productDescription"
-              value={productDescription}
-              onChange={(e) => setProductDescription(e.target.value)}
+              id="blogDescription"
+              value={blogDescription}
+              onChange={(e) => setBlogDescription(e.target.value)}
               rows="3"
-              placeholder="Enter product description"
+              placeholder="Enter blog description"
             ></textarea>
           </div>
           <div className="mb-3">
-            <label htmlFor="productImage" className="form-label">
-              Product Image
+            <label htmlFor="blogImage" className="form-label">
+              Blog Image
             </label>
             <input
               type="file"
               className="form-control"
-              id="productImage"
+              id="blogImage"
               onChange={handleFileChange}
               ref={fileInputRef}
               style={{ display: "none" }}
@@ -144,4 +129,4 @@ const AddProductModal = ({ show, onClose }) => {
   );
 };
 
-export default AddProductModal;
+export default AddBlogModal;

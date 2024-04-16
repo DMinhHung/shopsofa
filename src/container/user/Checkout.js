@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HeaderUser from "../../components/user/HeaderUser";
 import FooterUser from "../../components/user/FooterUser";
+import axios from "axios";
 
 const Checkout = () => {
+  const [cartItems, setCartItems] = useState([]);
+  const [cartTotal, setCartTotal] = useState(0);
+
+  useEffect(() => {
+    fetchCartItems();
+  }, []);
+  const fetchCartItems = () => {
+    axios
+      .get("http://localhost:8000/api/add-to-cart-get-products")
+      .then((response) => {
+        setCartItems(response.data);
+        calculateCartTotal(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching shopping cart data:", error);
+      });
+  };
+  const calculateCartTotal = (items) => {
+    let total = 0;
+    items.forEach((item) => {
+      total += item.price * item.quantity;
+    });
+    setCartTotal(total);
+  };
+  console.log(cartTotal);
+
   return (
     <>
       <div>
@@ -431,31 +458,30 @@ const Checkout = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>
-                              Top Up T-Shirt <strong className="mx-2">x</strong>{" "}
-                              1
-                            </td>
-                            <td>$250.00</td>
-                          </tr>
-                          <tr>
-                            <td>
-                              Polo Shirt <strong className="mx-2">x</strong> 1
-                            </td>
-                            <td>$100.00</td>
-                          </tr>
+                          {cartItems.map((item, index) => (
+                            <tr>
+                              <td>
+                                {item.name}
+                                <strong className="mx-2">x</strong>
+                                {item.quantity}
+                              </td>
+                              <td>${item.price * item.quantity}</td>
+                            </tr>
+                          ))}
                           <tr>
                             <td className="text-black font-weight-bold">
                               <strong>Cart Subtotal</strong>
                             </td>
-                            <td className="text-black">$350.00</td>
+                            <td className="text-black">
+                              ${cartTotal.toFixed(2)}
+                            </td>
                           </tr>
                           <tr>
                             <td className="text-black font-weight-bold">
                               <strong>Order Total</strong>
                             </td>
                             <td className="text-black font-weight-bold">
-                              <strong>$350.00</strong>
+                              <strong>${cartTotal.toFixed(2)}</strong>
                             </td>
                           </tr>
                         </tbody>

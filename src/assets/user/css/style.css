@@ -398,7 +398,6 @@ a.more {
 .we-help-section .imgs-grid {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr) [27];
   grid-template-columns: repeat(27, 1fr);
   position: relative;
 }
@@ -899,4 +898,12 @@ textarea {
 .file-input-frame {
   /* Các thuộc tính khác */
   background-size: contain;
+}
+.btn-mh {
+  font-weight: 600;
+  padding: 12px 30px;
+  border-radius: 30px;
+  color: #ffffff;
+  background: #2f2f2f;
+  border-color: #2f2f2f;
 }
