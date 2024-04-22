@@ -18,7 +18,9 @@ const Login = () => {
       });
       console.log("Login successful:", response.data);
       const token = response.data.access_token;
+      const { access_token, user } = response.data;
       localStorage.setItem("token", token);
+      localStorage.setItem("role", user.role);
       navigate("/");
     } catch (error) {
       console.error("Login failed:", error.response.data);

@@ -40,12 +40,27 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 // import "../assets/js/custom.js";
 // import "../assets/js/tiny-slider.js";
 
+const AdminRoutes = () => {
+  return (
+    <Routes>
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/product" element={<Product />} />
+      <Route path="/user" element={<User />} />
+      <Route path="/blogad" element={<BlogAd />} />
+      <Route path="/ourteam" element={<OurTeam />} />
+      <Route path="/order" element={<Order />} />
+    </Routes>
+  );
+};
+
 const App = () => {
+  const userRole = localStorage.getItem("role");
+  console.log("userRole:", userRole);
   return (
     <Router>
       <div className="App">
         <Routes>
-          {/* User */}
+          {/* User Routes */}
           <Route path="/" element={<Index />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/product-details/:id" element={<ProductDetail />} />
@@ -56,22 +71,14 @@ const App = () => {
           <Route path="/shoppingcart" element={<ShoppingCart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/thanks" element={<Thankyou />} />
-          <Route path="*" element={<NotFoundPage />} />
-
-          {/* Login */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="*" element={<NotFoundPage />} />
 
-          {/* User */}
-
-          {/* Admin */}
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/user" element={<User />} />
-          <Route path="/blogad" element={<BlogAd />} />
-          <Route path="/ourteam" element={<OurTeam />} />
-          <Route path="/order" element={<Order />} />
-          {/* Admin */}
+          {/* Kiểm tra vai trò của người dùng và chỉ cho phép truy cập vào AdminRoutes nếu họ là admin */}
+          {userRole === "admin" && (
+            <Route path="/admin/*" element={<AdminRoutes />} />
+          )}
         </Routes>
       </div>
     </Router>

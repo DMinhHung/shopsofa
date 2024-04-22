@@ -60,7 +60,7 @@ const Header = () => {
           </li>
           <div className="collapse" id="masterCollapse">
             <li className="nav-item">
-              <a className="nav-link" href="/product">
+              <a className="nav-link" href="/admin/product">
                 <span
                   className="icon"
                   data-bs-toggle="tooltip"
@@ -72,7 +72,7 @@ const Header = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/ourteam">
+              <a className="nav-link" href="/admin/ourteam">
                 <span
                   className="icon"
                   data-bs-toggle="tooltip"
@@ -84,7 +84,7 @@ const Header = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/blogad">
+              <a className="nav-link" href="/admin/blogad">
                 <span
                   className="icon"
                   data-bs-toggle="tooltip"
@@ -98,7 +98,7 @@ const Header = () => {
           </div>
           {/* dropdown menu end */}
           <li className="nav-item">
-            <a className="nav-link" href="/user">
+            <a className="nav-link" href="/admin/user">
               <span
                 className="icon"
                 data-bs-toggle="tooltip"
@@ -111,7 +111,7 @@ const Header = () => {
           </li>
 
           <li className="nav-item">
-            <a className="nav-link" href="/">
+            <a className="nav-link" href="/admin">
               <span
                 className="icon"
                 data-bs-toggle="tooltip"
@@ -123,8 +123,8 @@ const Header = () => {
             </a>
           </li>
 
-          <li className="nav-item">
-            <a className="nav-link" href="/">
+          {/* <li className="nav-item">
+            <a className="nav-link" href="/admin">
               <span
                 className="icon"
                 data-bs-toggle="tooltip"
@@ -134,7 +134,7 @@ const Header = () => {
               </span>
               <span className="menu">Logout</span>
             </a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </>

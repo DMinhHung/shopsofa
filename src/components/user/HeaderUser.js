@@ -28,6 +28,7 @@ const HeaderUser = () => {
       console.log("Logout successful:", response.data);
       // Đăng xuất thành công, xóa token khỏi localStorage và làm mới trang
       localStorage.removeItem("token");
+      localStorage.removeItem("role");
       window.location.reload();
     } catch (error) {
       console.error("Logout failed:", error.response.data);
