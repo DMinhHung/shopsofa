@@ -1,15 +1,25 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Xử lý đăng nhập ở đây
-    console.log("Email:", email);
-    console.log("Password:", password);
+    try {
+      const response = await axios.post("http://localhost:8000/api/login", {
+        email,
+        password,
+      });
+      console.log("Login successful:", response.data);
+      // Redirect to dashboard or set user state
+    } catch (error) {
+      console.error("Login failed:", error.response.data);
+      setError("Invalid email or password");
+    }
   };
 
   return (
@@ -17,6 +27,7 @@ const Login = () => {
       <Row className="justify-content-center">
         <Col md={6}>
           <h2 className="text-center mb-4">Login</h2>
+          {error && <p className="text-danger">{error}</p>}
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>

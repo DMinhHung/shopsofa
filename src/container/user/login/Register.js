@@ -1,15 +1,26 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import axios from "axios";
 
 const Register = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Xử lý đăng nhập ở đây
-    console.log("Email:", email);
-    console.log("Password:", password);
+    axios
+      .post("http://localhost:8000/api/register", {
+        name: name,
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        console.log("Registration successful:", response.data);
+      })
+      .catch((error) => {
+        console.error("Registration failed:", error);
+      });
   };
 
   return (
@@ -18,6 +29,16 @@ const Register = () => {
         <Col md={6}>
           <h2 className="text-center mb-4">Register</h2>
           <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formBasicName">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </Form.Group>
+
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
@@ -39,7 +60,7 @@ const Register = () => {
             </Form.Group>
 
             <Button variant="primary" type="submit" className="w-100">
-              Login
+              Register
             </Button>
           </Form>
         </Col>

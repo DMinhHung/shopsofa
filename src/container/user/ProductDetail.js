@@ -62,7 +62,7 @@ const ProductDetail = () => {
           <div className="row product-content">
             <div className="col-lg-5">
               <img
-                src={`http://localhost:8000/images/${product.image}`}
+                src={`http://localhost:8000/${product.image}`}
                 className="img-product"
                 alt="Cinque Terre"
                 width="400"
@@ -72,28 +72,28 @@ const ProductDetail = () => {
                 {/* Cố định 4 ảnh nhỏ */}
                 <div className="col-3">
                   <img
-                    src={`http://localhost:8000/images/small1.jpg`}
+                    src={`http://localhost:8000/${product.imagep1}`}
                     alt="Small Image 1"
                     className="img-thumbnail"
                   />
                 </div>
                 <div className="col-3">
                   <img
-                    src={`http://localhost:8000/images/small2.jpg`}
+                    src={`http://localhost:8000/${product.imagep2}`}
                     alt="Small Image 2"
                     className="img-thumbnail"
                   />
                 </div>
                 <div className="col-3">
                   <img
-                    src={`http://localhost:8000/images/small3.jpg`}
+                    src={`http://localhost:8000/${product.imagep3}`}
                     alt="Small Image 3"
                     className="img-thumbnail"
                   />
                 </div>
                 <div className="col-3">
                   <img
-                    src={`http://localhost:8000/images/small4.jpg`}
+                    src={`http://localhost:8000/${product.imagep4}`}
                     alt="Small Image 4"
                     className="img-thumbnail"
                   />

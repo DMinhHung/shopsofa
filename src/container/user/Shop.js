@@ -71,7 +71,7 @@ const Shop = () => {
                     href={`/product-details/${product.id}`}
                   >
                     <img
-                      src={`http://localhost:8000/images/${product.image}`}
+                      src={`http://localhost:8000/${product.image}`}
                       className="img-fluid product-thumbnail"
                     />
                     <h3 className="product-title">{product.name}</h3>

@@ -110,7 +110,7 @@ const Product = () => {
                               <td>
                                 <img
                                   style={{ width: "80px" }}
-                                  src={`http://localhost:8000/images/${product.image}`}
+                                  src={`http://localhost:8000/${product.image}`}
                                   alt={product.name}
                                 />
                               </td>
