@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,7 +17,9 @@ const Login = () => {
         password,
       });
       console.log("Login successful:", response.data);
-      // Redirect to dashboard or set user state
+      const token = response.data.access_token;
+      localStorage.setItem("token", token);
+      navigate("/");
     } catch (error) {
       console.error("Login failed:", error.response.data);
       setError("Invalid email or password");
