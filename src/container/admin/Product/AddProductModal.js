@@ -221,17 +221,17 @@ const AddProductModal = ({ show, onClose }) => {
             <div
               className="file-input-frame"
               style={{
-                width: "100%",
-                height: "200px",
-                border: "2px dashed #ccc",
-                borderRadius: "5px",
-                cursor: "pointer",
-                backgroundImage: `url(${previewImage})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                width: "auto", // Kích thước của khung hình ảnh
+                height: "500px", // Kích thước của khung hình ảnh
+                border: "2px dashed #ccc", // Viền đứt nét màu xám
+                borderRadius: "5px", // Độ cong góc của khung hình ảnh
+                cursor: "pointer", // Con trỏ chuột biểu thị là có thể click
+                // backgroundImage: `url(${previewImage})`, // Ảnh nền là ảnh được chọn
+                backgroundSize: "cover", // Hiển thị ảnh đầy đủ bên trong khung
+                backgroundPosition: "center", // Căn giữa ảnh
+                display: "flex", // Sắp xếp các phần tử theo chiều ngang
+                alignItems: "center", // Căn chỉnh theo chiều dọc
+                justifyContent: "center", // Căn chỉnh theo chiều ngang
               }}
               onClick={handleButtonClick}
             >
@@ -263,17 +263,14 @@ const AddProductModal = ({ show, onClose }) => {
                 <div
                   className="file-input-frame mr-3 mb-3"
                   style={{
-                    width: "100px",
-                    height: "100px",
+                    width: "auto",
+                    height: "200px",
                     border: "2px dashed #ccc",
                     borderRadius: "5px",
                     cursor: "pointer",
-                    backgroundImage: `url(${additionalPreviews[index]})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
                   }}
                   onClick={() => additionalFileInputRefs.current[index].click()}
                 >

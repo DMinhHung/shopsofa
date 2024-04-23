@@ -10,6 +10,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
+  const userId = localStorage.getItem("userid");
 
   useEffect(() => {
     axios
@@ -21,16 +22,27 @@ const ProductDetail = () => {
         console.error("Error fetching product:", error);
       })
       .finally(() => {
-        setLoading(false); // Đánh dấu rằng dữ liệu đã được tải
+        setLoading(false);
       });
   }, [id]);
 
   const addToCart = () => {
+    const token = localStorage.getItem("usertoken");
+    console.log(token);
     axios
-      .post(`http://localhost:8000/api/add-to-cart`, {
-        productId: product.id,
-        quantity: 1,
-      })
+      .post(
+        `http://localhost:8000/api/add-to-cart`,
+        {
+          productId: product.id,
+          // userId: userId,
+          quantity: 1,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((response) => {
         console.log("Product added to cart:", response.data);
         navigate("/shoppingcart");
@@ -39,7 +51,7 @@ const ProductDetail = () => {
         console.error("Error adding product to cart:", error);
       });
   };
-  console.log(addToCart);
+  // console.log(addToCart);
 
   if (loading) {
     return (

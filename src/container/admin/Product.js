@@ -29,6 +29,7 @@ const Product = () => {
   // Delete Product
   const handleDelete = async (id) => {
     try {
+      console.log("Button clicked");
       await axios.delete(`http://localhost:8000/api/products/${id}`);
       fetchData();
     } catch (error) {

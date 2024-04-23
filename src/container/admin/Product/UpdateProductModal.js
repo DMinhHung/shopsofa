@@ -322,7 +322,7 @@ const UpdateProductModal = ({ product, onClose }) => {
                 border: "2px dashed #ccc",
                 borderRadius: "5px",
                 cursor: "pointer",
-                backgroundImage: `url(${previewImage})`,
+                // backgroundImage: `url(${previewImage})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 display: "flex",
@@ -360,12 +360,12 @@ const UpdateProductModal = ({ product, onClose }) => {
                 <div
                   className="file-input-frame mr-3 mb-3"
                   style={{
-                    width: "100px",
-                    height: "100px",
+                    width: "auto",
+                    height: "200px",
                     border: "2px dashed #ccc",
                     borderRadius: "5px",
                     cursor: "pointer",
-                    backgroundImage: `url(${additionalPreviews[index]})`,
+                    // backgroundImage: `url(${additionalPreviews[index]})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     display: "flex",

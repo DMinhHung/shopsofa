@@ -7,7 +7,7 @@ import cartSvg from "../../assets/user/images/cart.svg";
 
 const HeaderUser = () => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const isLoggedIn = !!localStorage.getItem("token");
+  const isLoggedIn = !!localStorage.getItem("usertoken");
 
   const handleToggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -15,7 +15,7 @@ const HeaderUser = () => {
 
   const handleLogout = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("usertoken");
       const response = await axios.post(
         "http://localhost:8000/api/logout",
         {},
@@ -26,9 +26,8 @@ const HeaderUser = () => {
         }
       );
       console.log("Logout successful:", response.data);
-      // Đăng xuất thành công, xóa token khỏi localStorage và làm mới trang
-      localStorage.removeItem("token");
-      localStorage.removeItem("role");
+      localStorage.removeItem("usertoken");
+      localStorage.removeItem("userrole");
       window.location.reload();
     } catch (error) {
       console.error("Logout failed:", error.response.data);

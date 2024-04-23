@@ -16,8 +16,13 @@ const ShoppingCart = () => {
   }, []);
 
   const fetchCartItems = () => {
+    const token = localStorage.getItem("usertoken");
     axios
-      .get("http://localhost:8000/api/add-to-cart-get-products")
+      .get("http://localhost:8000/api/add-to-cart-get-products", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setCartItems(response.data);
         const total = response.data.reduce(
@@ -132,7 +137,7 @@ const ShoppingCart = () => {
                         <tr key={item.id}>
                           <td className="product-thumbnail">
                             <img
-                              src={`http://localhost:8000/images/${item.image}`}
+                              src={`http://localhost:8000/${item.image}`}
                               alt="Image"
                               className="img-fluid"
                             />

@@ -6,6 +6,7 @@ import {
   faCircleUser,
   faArrowRightFromBracket,
   faCartShopping,
+  faHouse,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
@@ -115,11 +116,24 @@ const Header = () => {
               <span
                 className="icon"
                 data-bs-toggle="tooltip"
-                data-bs-title="Logout"
+                data-bs-title="Order"
               >
                 <FontAwesomeIcon icon={faCartShopping} />
               </span>
               <span className="menu">Order</span>
+            </a>
+          </li>
+
+          <li className="nav-item">
+            <a className="nav-link" href="/">
+              <span
+                className="icon"
+                data-bs-toggle="tooltip"
+                data-bs-title="Order"
+              >
+                <FontAwesomeIcon icon={faHouse} />
+              </span>
+              <span className="menu">Home</span>
             </a>
           </li>
 
