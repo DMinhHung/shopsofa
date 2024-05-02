@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import HeaderUser from "../../components/user/HeaderUser";
 import FooterUser from "../../components/user/FooterUser";
 import axios from "axios";
+import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 
 const Checkout = () => {
   const [cartItems, setCartItems] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
+  const [currency, setCurrency] = useState("USD");
+  const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
 
   useEffect(() => {
     fetchCartItems();
@@ -22,6 +25,8 @@ const Checkout = () => {
       .then((response) => {
         setCartItems(response.data);
         calculateCartTotal(response.data);
+        onCreateOrder(response.data);
+        savePayPalDataToServer(response.data);
       })
       .catch((error) => {
         console.error("Error fetching shopping cart data:", error);
@@ -46,8 +51,6 @@ const Checkout = () => {
       date: new Date().toISOString(),
     };
 
-    console.log("Order data:", orderData);
-
     axios
       .post("http://localhost:8000/api/placeorder", orderData, {
         headers: {
@@ -63,6 +66,67 @@ const Checkout = () => {
         console.error("Error placing order:", error);
       });
   };
+
+  const onCurrencyChange = ({ target: { value } }) => {
+    setCurrency(value);
+    dispatch({
+      type: "resetOptions",
+      value: {
+        ...options,
+        currency: value,
+      },
+    });
+  };
+
+  const onCreateOrder = (items, actions) => {
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            value: "100.00",
+            currency_code: currency,
+          },
+        },
+      ],
+    });
+  };
+
+  const onApproveOrder = (data, actions) => {
+    return actions.order.capture().then((details) => {
+      savePayPalDataToServer(details);
+      alert(`Transaction completed by ${details.payer.name.given_name}`);
+    });
+  };
+
+  const savePayPalDataToServer = (items, details) => {
+    const token = localStorage.getItem("usertoken");
+    console.log(items);
+    const paypalData = {
+      product_name: items.product_name,
+      quantity: items.quantity,
+      amount: items.price,
+      currency: currency,
+      payer_name: items.user_name,
+      payer_email: items.email,
+      payment_status: "COMPLETED",
+      payment_method: "PayPal",
+    };
+
+    axios
+      .post("http://localhost:8000/api/paypal", paypalData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        console.log("PayPal data saved successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error saving PayPal data:", error);
+      });
+  };
+
   return (
     <div>
       <HeaderUser />
@@ -574,16 +638,23 @@ const Checkout = () => {
                     </div>
                     <div className="border p-3 mb-5">
                       <h3 className="h6 mb-0">
-                        <a
-                          className="d-block"
-                          data-bs-toggle="collapse"
-                          href="#collapsepaypal"
-                          role="button"
-                          aria-expanded="false"
-                          aria-controls="collapsepaypal"
-                        >
-                          Paypal
-                        </a>
+                        <div className="checkout">
+                          {isPending ? (
+                            <p>LOADING...</p>
+                          ) : (
+                            <>
+                              <PayPalButtons
+                                style={{ layout: "vertical" }}
+                                createOrder={(data, actions) =>
+                                  onCreateOrder(data, actions)
+                                }
+                                onApprove={(data, actions) =>
+                                  onApproveOrder(data, actions)
+                                }
+                              />
+                            </>
+                          )}
+                        </div>
                       </h3>
                       <div className="collapse" id="collapsepaypal">
                         <div className="py-2">

@@ -28,7 +28,7 @@ const Header = () => {
         </div>
         <ul className="nav nav-pills flex-column">
           <li className="nav-item active">
-            <a className="nav-link" href="/dashboard">
+            <a className="nav-link" href="/admin/dashboard">
               <span
                 className="icon"
                 data-bs-toggle="tooltip"

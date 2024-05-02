@@ -1,12 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-//Import CSS and JS
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+
+// Import các CSS và JS cần thiết
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../src/assets/user/css/style.css";
 import "../src/assets/user/css/tiny-slider.css";
+import "../src/assets/user/css/product-detail.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-//Import Pages
-//User
+
+// Import các trang (pages)
+// User
 import Index from "./container/user/Index";
 import Shop from "./container/user/Shop";
 import ProductDetail from "./container/user/ProductDetail";
@@ -19,36 +23,35 @@ import Checkout from "./container/user/Checkout";
 import Thankyou from "./container/user/Thankyou";
 import NotFoundPage from "./container/user/404";
 
-import OurTeam from "./container/admin/OurTeam";
-import Order from "./container/admin/Order";
-//Admin
+// Admin
 import Dashboard from "./container/admin/Dashboard";
 import Product from "./container/admin/Product";
 import User from "./container/admin/User";
 import BlogAd from "./container/admin/Blog";
-//Login
+import OurTeam from "./container/admin/OurTeam";
+import Order from "./container/admin/Order";
+
+// Login
 import Login from "./container/user/login/Login";
 import Register from "./container/user/login/Register";
+import Profile from "./container/user/auth/Profile";
 
-//Import CSS and JS
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../src/assets/user/css/style.css";
-import "../src/assets/user/css/tiny-slider.css";
-import "../src/assets/user/css/product-detail.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-
-// import "../assets/js/custom.js";
-// import "../assets/js/tiny-slider.js";
+const initialOptions = {
+  "client-id":
+    "AXF1yspt3WBEN5ijpODGsR_r4li-QyAaUwuCooP8InZL3fEvENZgDp6gAt1FdPnvcudKY37THU6LGa27",
+  currency: "USD",
+  intent: "capture",
+};
 
 const AdminRoutes = () => {
   return (
     <Routes>
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/product" element={<Product />} />
-      <Route path="/user" element={<User />} />
-      <Route path="/blogad" element={<BlogAd />} />
-      <Route path="/ourteam" element={<OurTeam />} />
-      <Route path="/order" element={<Order />} />
+      <Route path="/admin/dashboard" element={<Dashboard />} />
+      <Route path="/admin/product" element={<Product />} />
+      <Route path="/admin/user" element={<User />} />
+      <Route path="/admin/blogad" element={<BlogAd />} />
+      <Route path="/admin/ourteam" element={<OurTeam />} />
+      <Route path="/admin/order" element={<Order />} />
     </Routes>
   );
 };
@@ -59,27 +62,33 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        <Routes>
-          {/* User Routes */}
-          <Route path="/" element={<Index />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/product-details/:id" element={<ProductDetail />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/shoppingcart" element={<ShoppingCart />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/thanks" element={<Thankyou />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="*" element={<NotFoundPage />} />
-
-          {/* Kiểm tra vai trò của người dùng và chỉ cho phép truy cập vào AdminRoutes nếu họ là admin */}
-          {userRole === "admin" && (
-            <Route path="/admin/*" element={<AdminRoutes />} />
-          )}
-        </Routes>
+        {/* Bao bọc toàn bộ ứng dụng trong PayPalScriptProvider */}
+        <PayPalScriptProvider options={initialOptions}>
+          <Routes>
+            {/* Các Routes dành cho người dùng */}
+            <Route path="/" element={<Index />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/product-details/:id" element={<ProductDetail />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/shoppingcart" element={<ShoppingCart />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/thanks" element={<Thankyou />} />
+            {/* Routes đăng nhập */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            {/* Routes cho hồ sơ người dùng */}
+            <Route path="/profile" element={<Profile />} />
+            {/* Routes không tìm thấy */}
+            <Route path="*" element={<NotFoundPage />} />
+            {/* Kiểm tra vai trò của người dùng và chỉ cho phép truy cập vào AdminRoutes nếu họ là admin */}
+            {userRole === "admin" && (
+              <Route path="/admin/*" element={<AdminRoutes />} />
+            )}
+          </Routes>
+        </PayPalScriptProvider>
       </div>
     </Router>
   );

@@ -56,10 +56,15 @@ const Login = () => {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit" className="w-100">
+            <Button variant="primary" type="submit" className="w-100 mt-3">
               Login
             </Button>
           </Form>
+        </Col>
+      </Row>
+      <Row>
+        <Col className="text-center mt-3">
+          Don't have an account? <a href="/register">Register</a>
         </Col>
       </Row>
     </Container>

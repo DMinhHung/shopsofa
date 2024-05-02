@@ -181,214 +181,221 @@ const UpdateProductModal = ({ product, onClose }) => {
       <Modal.Body>
         <form onSubmit={handleSubmit}>
           {/* Product Name */}
-          <div className="mb-3">
-            <label htmlFor="name" className="form-label">
-              Product Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              name="name"
-              value={updatedProduct.name}
-              onChange={handleChange}
-              placeholder="Enter product name"
-            />
-          </div>
-          {/* Product Price */}
-          <div className="mb-3">
-            <label htmlFor="price" className="form-label">
-              Product Price
-            </label>
-            <input
-              type="number"
-              className="form-control"
-              id="price"
-              name="price"
-              value={updatedProduct.price}
-              onChange={handleChange}
-              placeholder="Enter product price"
-            />
-          </div>
-          {/* Product Description */}
-          <div className="mb-3">
-            <label htmlFor="description" className="form-label">
-              Product Description
-            </label>
-            <textarea
-              className="form-control"
-              id="description"
-              name="description"
-              value={updatedProduct.description}
-              onChange={handleChange}
-              rows="3"
-              placeholder="Enter product description"
-            ></textarea>
-          </div>
-          {/* Product Size */}
-          <div className="mb-3">
-            <label htmlFor="sizepd" className="form-label">
-              Size
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="sizepd"
-              name="sizepd"
-              value={updatedProduct.sizepd}
-              onChange={handleChange}
-              placeholder="Enter product size"
-            />
-          </div>
-          {/* Product Color */}
-          <div className="mb-3">
-            <label htmlFor="colorpd" className="form-label">
-              Color
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="colorpd"
-              name="colorpd"
-              value={updatedProduct.colorpd}
-              onChange={handleChange}
-              placeholder="Enter product color"
-            />
-          </div>
-          {/* Product Material */}
-          <div className="mb-3">
-            <label htmlFor="materialpd" className="form-label">
-              Material
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="materialpd"
-              name="materialpd"
-              value={updatedProduct.materialpd}
-              onChange={handleChange}
-              placeholder="Enter product material"
-            />
-          </div>
-          {/* Product Warranty */}
-          <div className="mb-3">
-            <label htmlFor="warrantypd" className="form-label">
-              Warranty
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="warrantypd"
-              name="warrantypd"
-              value={updatedProduct.warrantypd}
-              onChange={handleChange}
-              placeholder="Enter product warranty"
-            />
-          </div>
-          {/* Product Advantage */}
-          <div className="mb-3">
-            <label htmlFor="advantage" className="form-label">
-              Advantage
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="advantage"
-              name="advantage"
-              value={updatedProduct.advantage}
-              onChange={handleChange}
-              placeholder="Enter product advantage"
-            />
-          </div>
-          {/* Product Image */}
-          <div className="mb-3">
-            <label htmlFor="image" className="form-label">
-              Product Image
-            </label>
-            <input
-              type="file"
-              className="form-control"
-              id="image"
-              name="image"
-              onChange={handleImageChange}
-              ref={fileInputRef}
-              style={{ display: "none" }}
-            />
-            <div
-              className="file-input-frame"
-              style={{
-                width: "100%",
-                height: "auto",
-                border: "2px dashed #ccc",
-                borderRadius: "5px",
-                cursor: "pointer",
-                // backgroundImage: `url(${previewImage})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              onClick={handleButtonClick}
-            >
-              {previewImage || `http://localhost:8000/${product.image}` ? (
-                <img
-                  src={previewImage}
-                  alt="Preview"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                    marginBottom: "10px",
-                  }}
-                />
-              ) : (
-                <div className="file-input-label">Please Choose File Image</div>
-              )}
-            </div>
-          </div>
-          {/* Additional Images */}
           <div className="row">
-            {[0, 1, 2, 3].map((index) => (
-              <div key={index} className="col-3">
+            <div className="col-md-6">
+              <div className="mb-3">
+                <label htmlFor="name" className="form-label">
+                  Product Name
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  name="name"
+                  value={updatedProduct.name}
+                  onChange={handleChange}
+                  placeholder="Enter product name"
+                />
+              </div>
+              {/* Product Price */}
+              <div className="mb-3">
+                <label htmlFor="price" className="form-label">
+                  Product Price
+                </label>
+                <input
+                  type="number"
+                  className="form-control"
+                  id="price"
+                  name="price"
+                  value={updatedProduct.price}
+                  onChange={handleChange}
+                  placeholder="Enter product price"
+                />
+              </div>
+
+              {/* Product Size */}
+              <div className="mb-3">
+                <label htmlFor="sizepd" className="form-label">
+                  Size
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="sizepd"
+                  name="sizepd"
+                  value={updatedProduct.sizepd}
+                  onChange={handleChange}
+                  placeholder="Enter product size"
+                />
+              </div>
+              {/* Product Color */}
+              <div className="mb-3">
+                <label htmlFor="colorpd" className="form-label">
+                  Color
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="colorpd"
+                  name="colorpd"
+                  value={updatedProduct.colorpd}
+                  onChange={handleChange}
+                  placeholder="Enter product color"
+                />
+              </div>
+              {/* Product Material */}
+              <div className="mb-3">
+                <label htmlFor="materialpd" className="form-label">
+                  Material
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="materialpd"
+                  name="materialpd"
+                  value={updatedProduct.materialpd}
+                  onChange={handleChange}
+                  placeholder="Enter product material"
+                />
+              </div>
+              {/* Product Warranty */}
+              <div className="mb-3">
+                <label htmlFor="warrantypd" className="form-label">
+                  Warranty
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="warrantypd"
+                  name="warrantypd"
+                  value={updatedProduct.warrantypd}
+                  onChange={handleChange}
+                  placeholder="Enter product warranty"
+                />
+              </div>
+              {/* Product Advantage */}
+              <div className="mb-3">
+                <label htmlFor="advantage" className="form-label">
+                  Advantage
+                </label>
+                <textarea
+                  type="text"
+                  className="form-control"
+                  id="advantage"
+                  name="advantage"
+                  rows="3"
+                  value={updatedProduct.advantage}
+                  onChange={handleChange}
+                  placeholder="Enter product advantage"
+                />
+              </div>
+              {/* Product Description */}
+              <div className="mb-3">
+                <label htmlFor="description" className="form-label">
+                  Description
+                </label>
+                <textarea
+                  className="form-control"
+                  id="description"
+                  name="description"
+                  value={updatedProduct.description}
+                  onChange={handleChange}
+                  rows="3"
+                  placeholder="Enter product description"
+                ></textarea>
+              </div>
+            </div>
+            <div className="col-md-6">
+              {/* Product Image */}
+              <div className="mb-3 mt-5">
+                <label htmlFor="image" className="form-label"></label>
                 <input
                   type="file"
                   className="form-control"
-                  onChange={(e) => handleAdditionalImageChange(e, index)}
+                  id="image"
+                  name="image"
+                  onChange={handleImageChange}
+                  ref={fileInputRef}
                   style={{ display: "none" }}
-                  ref={(el) => (additionalFileInputRefs.current[index] = el)}
                 />
                 <div
-                  className="file-input-frame mr-3 mb-3"
+                  className="file-input-frame"
                   style={{
-                    width: "auto",
-                    height: "200px",
+                    width: "100%",
+                    height: "auto",
                     border: "2px dashed #ccc",
                     borderRadius: "5px",
                     cursor: "pointer",
-                    // backgroundImage: `url(${additionalPreviews[index]})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
-                  onClick={() => handleAdditionalButtonClick(index)}
+                  onClick={handleButtonClick}
                 >
-                  {additionalPreviews[index] && (
+                  {previewImage || `http://localhost:8000/${product.image}` ? (
                     <img
-                      src={additionalPreviews[index]}
-                      alt={`Preview ${index}`}
+                      src={previewImage}
+                      alt="Preview"
                       style={{
-                        maxWidth: "100%",
-                        maxHeight: "100%",
+                        width: "100%",
+                        height: "auto",
+                        marginBottom: "10px",
                       }}
                     />
+                  ) : (
+                    <div className="file-input-label">
+                      Please Choose File Image
+                    </div>
                   )}
                 </div>
               </div>
-            ))}
+              {/* Additional Images */}
+              <div className="row">
+                {[0, 1, 2, 3].map((index) => (
+                  <div key={index} className="col-3">
+                    <input
+                      type="file"
+                      className="form-control"
+                      onChange={(e) => handleAdditionalImageChange(e, index)}
+                      style={{ display: "none" }}
+                      ref={(el) =>
+                        (additionalFileInputRefs.current[index] = el)
+                      }
+                    />
+                    <div
+                      className="file-input-frame mr-3 mb-3"
+                      style={{
+                        width: "auto",
+                        height: "200px",
+                        border: "2px dashed #ccc",
+                        borderRadius: "5px",
+                        cursor: "pointer",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                      onClick={() => handleAdditionalButtonClick(index)}
+                    >
+                      {additionalPreviews[index] && (
+                        <img
+                          src={additionalPreviews[index]}
+                          alt={`Preview ${index}`}
+                          style={{
+                            maxWidth: "100%",
+                            maxHeight: "100%",
+                          }}
+                        />
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-          {/* Submit Button */}
           <div className="text-center">
             <Button variant="primary" type="submit">
               Update Product

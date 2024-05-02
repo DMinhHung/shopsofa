@@ -99,6 +99,7 @@ const Product = () => {
                             <th scope="col">Image</th>
                             <th scope="col">Price</th>
                             <th scope="col">Description</th>
+                            <th scope="col">Advantage</th>
                             <th scope="col">Delete</th>
                             <th scope="col">Update</th>
                           </tr>
@@ -117,6 +118,7 @@ const Product = () => {
                               </td>
                               <td>{product.price}</td>
                               <td>{product.description}</td>
+                              <td>{product.advantage}</td>
                               <td>
                                 <button
                                   onClick={() => handleDelete(product.id)}

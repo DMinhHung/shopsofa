@@ -115,10 +115,10 @@ const ProductDetail = () => {
             <div className="col-lg-7">
               <p className="title">{product.name}</p>
               <p>Mã:</p>
-              <p>Kích thước:</p>
-              <p>Màu sắc:</p>
-              <p>Chất liệu:</p>
-              <p>Bảo hành:</p>
+              <p>Kích thước: {product.sizepd}</p>
+              <p>Màu sắc: {product.colorpd}</p>
+              <p>Chất liệu:{product.materialpd}</p>
+              <p>Bảo hành:{product.warrantypd}</p>
               <div className="row price">
                 <div className="col-12 col-xs-12">
                   <p>${product.price}</p>
@@ -143,26 +143,11 @@ const ProductDetail = () => {
             <div className="description-body">
               <div className="Description">
                 <h4>Thông tin {product.name}</h4>
-                <p>
-                  Thiết kế theo phong cách mới lạ kết hợp với phần tựa đầu dày
-                  7cm, rộng 31cm tạo cảm giác thoải mái dễ chịu cho người ngồi
-                  tựa đầu. Phần nệm ngồi bằng mút thoáng khí tạo sự êm nhẹ thoải
-                  mái và tốt cho hệ thống tim mạch. Phần lưng thiết kế vải lưới
-                  vô cùng thoáng khí. Phần tay vịn thiết kế hình vòng cung tự
-                  nhiên giúp người ngồi không bị gò bó. Kích thước 60 x 65 x
-                  108-118CM Màu sắc đen
-                </p>
+                <p>{product.description}</p>
               </div>
               <div className="Ưu diểm">
                 <h4>Ưu điểm nổi bật của {product.name}</h4>
-                <p>
-                  Thiết kế hiện đại, sang trọng Piston, gối lưng, tựa đầu đều có
-                  thể tùy chỉnh để có thể điều chỉnh độ cao thấp Ngả lưng đến
-                  155° để có thể nghỉ ngơi thư giãn, hay ngủ luôn tại bàn làm
-                  việc. Ghế Lưới ngả lưng văn phòng, game phù hợp với những dân
-                  văn phòng, các bạn thường xuyên làm việc với máy tính hoặc các
-                  game thủ…
-                </p>
+                <p>{product.advantage}</p>
               </div>
               <div className="Chi tiết">
                 <h4>Chi tiết {product.name}</h4>
