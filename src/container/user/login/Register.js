@@ -24,6 +24,9 @@ const Register = () => {
     if (!/\S+@\S+\.\S+/.test(email)) {
       errors.email = "Invalid email address.";
     }
+    if (password.length < 8) {
+      errors.password = "Password should be at least 8 characters long.";
+    }
     if (password === "") {
       errors.confirmPassword = "Please enter your passwords.";
     }
@@ -91,6 +94,9 @@ const Register = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              {errors.password && (
+                <small className="text-danger">{errors.password}</small>
+              )}
               {errors.confirmPassword && (
                 <small className="text-danger">{errors.confirmPassword}</small>
               )}

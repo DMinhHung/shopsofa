@@ -56,40 +56,49 @@ const AdminRoutes = () => {
   );
 };
 
+const UserRoutes = () => {
+  const userRole = localStorage.getItem("userrole");
+  console.log("userRole:", userRole);
+  return (
+    <Routes>
+      {/* Các Routes dành cho người dùng */}
+      <Route path="/" element={<Index />} />
+      <Route path="/shop" element={<Shop />} />
+      <Route path="/product-details/:id" element={<ProductDetail />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/services" element={<Services />} />
+      <Route path="/blog" element={<Blog />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/shoppingcart" element={<ShoppingCart />} />
+      <Route path="/checkout" element={<Checkout />} />
+      <Route path="/thanks" element={<Thankyou />} />
+      {/* Routes đăng nhập */}
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      {/* Routes cho hồ sơ người dùng */}
+      <Route path="/profile" element={<Profile />} />
+      {/* Routes không tìm thấy */}
+      {userRole !== "admin" && <Route path="*" element={<NotFoundPage />} />}
+    </Routes>
+  );
+};
+
 const App = () => {
   const userRole = localStorage.getItem("userrole");
   console.log("userRole:", userRole);
   return (
     <Router>
-      <div className="App">
-        {/* Bao bọc toàn bộ ứng dụng trong PayPalScriptProvider */}
-        <PayPalScriptProvider options={initialOptions}>
-          <Routes>
-            {/* Các Routes dành cho người dùng */}
-            <Route path="/" element={<Index />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/product-details/:id" element={<ProductDetail />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/shoppingcart" element={<ShoppingCart />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/thanks" element={<Thankyou />} />
-            {/* Routes đăng nhập */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            {/* Routes cho hồ sơ người dùng */}
-            <Route path="/profile" element={<Profile />} />
-            {/* Routes không tìm thấy */}
-            <Route path="*" element={<NotFoundPage />} />
-            {/* Kiểm tra vai trò của người dùng và chỉ cho phép truy cập vào AdminRoutes nếu họ là admin */}
-            {userRole === "admin" && (
-              <Route path="/admin/*" element={<AdminRoutes />} />
-            )}
-          </Routes>
-        </PayPalScriptProvider>
-      </div>
+      <PayPalScriptProvider options={initialOptions}>
+        {/* Kiểm tra vai trò của người dùng */}
+        {userRole === "admin" ? (
+          <>
+            <UserRoutes />
+            <AdminRoutes />
+          </>
+        ) : (
+          <UserRoutes />
+        )}
+      </PayPalScriptProvider>
     </Router>
   );
 };
