@@ -79,16 +79,19 @@ const Blog = () => {
                       <div className="card-body">
                         <div className="d-flex">
                           <div className="col-6">
-                            <p className="card-text text-start">Show</p>
-                          </div>
-                          <div className="col-6 text-end">
                             <span className="card-text text-end">Search :</span>{" "}
                             <input />
                           </div>
+                          <div className="col-6 text-end">
+                            <button
+                              className="btn btn-primary"
+                              onClick={handleAdd}
+                            >
+                              Add Product
+                            </button>
+                          </div>
                         </div>
-                        <button className="btn btn-primary" onClick={handleAdd}>
-                          Add Product
-                        </button>
+
                         <table className="table table-hover text-center mt-4">
                           <thead>
                             <tr>
@@ -113,13 +116,19 @@ const Blog = () => {
                                   />
                                 </td>
                                 <td>{blog.description}</td>
-                                <td>
-                                  <button onClick={() => handleDelete(blog.id)}>
+                                <td className="align-middle">
+                                  <button
+                                    className="btn btn-danger"
+                                    onClick={() => handleDelete(blog.id)}
+                                  >
                                     <FontAwesomeIcon icon={faTrashCan} />
                                   </button>
                                 </td>
-                                <td>
-                                  <button onClick={() => handleUpdate(blog)}>
+                                <td className="align-middle">
+                                  <button
+                                    className="btn btn-primary"
+                                    onClick={() => handleUpdate(blog)}
+                                  >
                                     <FontAwesomeIcon icon={faPenToSquare} />
                                   </button>
                                 </td>

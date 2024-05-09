@@ -8,10 +8,12 @@ const Checkout = () => {
   const [cartItems, setCartItems] = useState([]);
   const [cartTotal, setCartTotal] = useState(0);
   const [currency, setCurrency] = useState("USD");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
 
   useEffect(() => {
     fetchCartItems();
+    checkLoginStatus();
   }, []);
 
   const fetchCartItems = () => {
@@ -127,6 +129,11 @@ const Checkout = () => {
       });
   };
 
+  const checkLoginStatus = () => {
+    const userId = localStorage.getItem("userid");
+    setIsLoggedIn(!!userId);
+  };
+
   return (
     <div>
       <HeaderUser />
@@ -148,9 +155,11 @@ const Checkout = () => {
         <div className="container">
           <div className="row mb-5">
             <div className="col-md-12">
-              <div className="border p-4 rounded" role="alert">
-                Returning customer? <a href="#">Click here</a> to login
-              </div>
+              {!isLoggedIn && (
+                <div className="border p-4 rounded" role="alert">
+                  Returning customer? <a href="/login">Click here</a> to login
+                </div>
+              )}
             </div>
           </div>
           <div className="row">
@@ -669,7 +678,7 @@ const Checkout = () => {
                     </div>
                     <div className="form-group">
                       <button
-                        className="btn btn-black btn-lg py-3 btn-block"
+                        className="btn-mh btn-sm btn-block"
                         onClick={placeOrder}
                       >
                         Place Order

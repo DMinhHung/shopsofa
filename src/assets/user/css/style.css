@@ -9,7 +9,15 @@ body {
   overflow-x: hidden;
   position: relative;
 }
+.icon-hover:hover {
+  border-color: #3b71ca !important;
+  background-color: white !important;
+  color: #3b71ca !important;
+}
 
+.icon-hover:hover i {
+  color: #3b71ca !important;
+}
 body {
   font-family: "Inter", sans-serif;
   font-weight: 400;

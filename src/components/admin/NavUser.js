@@ -1,6 +1,22 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 const NavUser = () => {
+  const [users, setUsers] = useState([]);
+
+  const fetchData = async () => {
+    const userId = localStorage.getItem("userid");
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/api/getuser/${userId}`
+      );
+      setUsers(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <>
       <nav className="navbar navbar-expand-md navbar-light bg-light shadow">
@@ -33,40 +49,23 @@ const NavUser = () => {
                 <i className="fa-solid fa-expand" />
               </a>
             </div>
-            <div className="dropdown">
+            <div className="">
               <a
-                className="nav-link dropdown-toggle py-1 px-3 rounded-1"
+                className="nav-link py-1 px-3 rounded-1"
                 href="#"
                 role="button"
-                data-bs-toggle="dropdown"
+                data-bs-toggle=""
                 aria-expanded="false"
               >
+                <img
+                  src={`http://localhost:8000/avatars/${users.image}`}
+                  style={{ width: "40px", height: "40px", borderRadius: "50%" }}
+                  className="avatar-icon me-1"
+                  alt="Avatar"
+                />
                 <i className="fas fa-user-circle me-1" />
-                Sahil
+                {users.name}
               </a>
-              <ul className="dropdown-menu dropdown-menu-end">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    <i className="fa-solid fa-address-card me-2" />
-                    Profile
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    <i className="fa-solid fa-gear me-2" />
-                    Account
-                  </a>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    <i className="fa-solid fa-right-from-bracket me-2" />
-                    Logout
-                  </a>
-                </li>
-              </ul>
             </div>
           </div>
         </div>

@@ -125,7 +125,7 @@ const ShoppingCart = () => {
                     <thead>
                       <tr>
                         <th className="product-thumbnail">Image</th>
-                        <th className="product-name">Product</th>
+                        <th className="product-name">Name</th>
                         <th className="product-price">Price</th>
                         <th className="product-quantity">Quantity</th>
                         <th className="product-total">Total</th>

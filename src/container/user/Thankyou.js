@@ -48,7 +48,11 @@ const Thankyou = () => {
                   You order was successfuly completed.
                 </p>
                 <p>
-                  <a href="shop.html" className="btn btn-sm btn-outline-black">
+                  <a
+                    href="/homel"
+                    className="btn-mh btn-sm btn-outline-black"
+                    style={{ textDecoration: "none" }}
+                  >
                     Back to shop
                   </a>
                 </p>

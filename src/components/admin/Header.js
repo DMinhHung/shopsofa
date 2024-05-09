@@ -112,7 +112,7 @@ const Header = () => {
           </li>
 
           <li className="nav-item">
-            <a className="nav-link" href="/admin">
+            <a className="nav-link" href="/admin/order">
               <span
                 className="icon"
                 data-bs-toggle="tooltip"

@@ -67,7 +67,7 @@ const Product = () => {
           <main className="bg-secondary bg-opacity-25 min-vh-100">
             <div className="container-fluid p-3 p-md-4">
               <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
-                <div className="fs-4 text-secondary fw-bolder">Product</div>
+                <div className="fs-4 text-secondary fw-bolder">Products</div>
                 <div
                   className="text-secondary lead fw-normal"
                   id="curr_date_time"
@@ -77,20 +77,23 @@ const Product = () => {
               <div className="row g-4">
                 <div className="col-lg-12">
                   <div className="card">
-                    <h5 className="card-header">Product</h5>
+                    <h5 className="card-header">Products</h5>
                     <div className="card-body">
                       <div className="d-flex">
                         <div className="col-6">
-                          <p className="card-text text-start">Show</p>
-                        </div>
-                        <div className="col-6 text-end">
                           <span className="card-text text-end">Search :</span>{" "}
                           <input />
                         </div>
+                        <div className="col-6 text-end">
+                          <button
+                            className="btn btn-primary"
+                            onClick={handleAdd}
+                          >
+                            Add Product
+                          </button>
+                        </div>
                       </div>
-                      <button className="btn btn-primary" onClick={handleAdd}>
-                        Add Product
-                      </button>
+
                       <table className="table table-hover text-center mt-4">
                         <thead>
                           <tr>
@@ -107,8 +110,12 @@ const Product = () => {
                         <tbody>
                           {products.map((product) => (
                             <tr key={product.id}>
-                              <td>{product.id}</td>
-                              <td>{product.name}</td>
+                              <td style={{ paddingTop: "30px" }}>
+                                {product.id}
+                              </td>
+                              <td style={{ paddingTop: "30px" }}>
+                                {product.name}
+                              </td>
                               <td>
                                 <img
                                   style={{ width: "80px" }}
@@ -116,18 +123,28 @@ const Product = () => {
                                   alt={product.name}
                                 />
                               </td>
-                              <td>{product.price}</td>
-                              <td>{product.description}</td>
-                              <td>{product.advantage}</td>
-                              <td>
+                              <td style={{ paddingTop: "30px" }}>
+                                {product.price}
+                              </td>
+                              <td style={{ paddingTop: "30px" }}>
+                                {product.description}
+                              </td>
+                              <td style={{ paddingTop: "30px" }}>
+                                {product.advantage}
+                              </td>
+                              <td className="align-middle">
                                 <button
+                                  className="btn btn-danger"
                                   onClick={() => handleDelete(product.id)}
                                 >
                                   <FontAwesomeIcon icon={faTrashCan} />
                                 </button>
                               </td>
-                              <td>
-                                <button onClick={() => handleUpdate(product)}>
+                              <td className="align-middle">
+                                <button
+                                  className="btn btn-primary"
+                                  onClick={() => handleUpdate(product)}
+                                >
                                   <FontAwesomeIcon icon={faPenToSquare} />
                                 </button>
                               </td>

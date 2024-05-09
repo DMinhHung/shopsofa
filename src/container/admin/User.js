@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/admin/Header";
 import NavUser from "../../components/admin/NavUser";
-
+import axios from "axios";
 const User = () => {
+  const [users, setUsers] = useState([]);
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/users");
+      setUsers(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleRoleChange = async (userId, newRole) => {
+    try {
+      await axios.post(`http://localhost:8000/api/updaterole/${userId}`, {
+        role: newRole,
+      });
+      fetchData();
+    } catch (error) {
+      console.error("Error updating role:", error);
+    }
+  };
   return (
     <>
       <div>
@@ -19,7 +43,7 @@ const User = () => {
             <main className="bg-secondary bg-opacity-25 min-vh-100">
               <div className="container-fluid p-3 p-md-4">
                 <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
-                  <div className="fs-4 text-secondary fw-bolder">User</div>
+                  <div className="fs-4 text-secondary fw-bolder">Users</div>
                   <div
                     className="text-secondary lead fw-normal"
                     id="curr_date_time"
@@ -27,96 +51,73 @@ const User = () => {
                 </div>
                 <hr />
                 <div className="row g-4">
-                  <div className="col-lg-3 col-md-6">
-                    <a href="#" className="text-decoration-none">
-                      <div className="card bg-primary bg-gradient shadow-sm custom-card">
-                        <div className="card-body p-3 pb-2 px-3 d-flex flex-row justify-content-between align-items-center">
-                          <div>
-                            <h1>
-                              <i className="fas fa-cart-shopping fa-2x text-white-50" />
-                            </h1>
-                          </div>
-                          <div className="text-center">
-                            <h2 className="display-4 fw-bold text-white">1</h2>
-                            <h4 className="text-white-50">Orders</h4>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div className="col-lg-3 col-md-6">
-                    <a href="#" className="text-decoration-none">
-                      <div className="card bg-primary bg-success shadow-sm custom-card">
-                        <div className="card-body p-3 pb-2 px-3 d-flex flex-row justify-content-between align-items-center">
-                          <div>
-                            <h1>
-                              <i className="fas fa-list fa-2x text-white-50" />
-                            </h1>
-                          </div>
-                          <div className="text-center">
-                            <h2 className="display-4 fw-bold text-white">4</h2>
-                            <h4 className="text-white-50">Products</h4>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div className="col-lg-3 col-md-6">
-                    <a href="#" className="text-decoration-none">
-                      <div className="card bg-danger bg-gradient shadow-sm custom-card">
-                        <div className="card-body p-3 pb-2 px-3 d-flex flex-row justify-content-between align-items-center">
-                          <div>
-                            <h1>
-                              <i className="fas fa-users fa-2x text-white-50" />
-                            </h1>
-                          </div>
-                          <div className="text-center">
-                            <h2 className="display-4 fw-bold text-white">5</h2>
-                            <h4 className="text-white-50">Users</h4>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div className="col-lg-3 col-md-6">
-                    <a href="#" className="text-decoration-none">
-                      <div className="card bg-dark bg-gradient shadow-sm custom-card">
-                        <div className="card-body p-3 pb-2 px-3 d-flex flex-row justify-content-between align-items-center">
-                          <div>
-                            <h1>
-                              <i className="fas fa-people-line fa-2x text-white-50" />
-                            </h1>
-                          </div>
-                          <div className="text-center">
-                            <h2 className="display-4 fw-bold text-white">8</h2>
-                            <h4 className="text-white-50">Visitors</h4>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
                   <div className="col-lg-12">
-                    <div className="card shadow">
-                      <div className="card-header">
-                        <h4 className="text-secondary fw-bold">Charts</h4>
-                      </div>
+                    <div className="card">
+                      <h5 className="card-header">Users</h5>
                       <div className="card-body">
-                        <div className="row g-4">
-                          <div className="col-lg-6">
-                            <div className="card shadow-sm">
-                              <div className="card-body">
-                                <canvas id="myChart" />
-                              </div>
-                            </div>
+                        <div className="d-flex">
+                          <div className="col-6">
+                            {/* <p className="card-text text-start">Show</p> */}
                           </div>
-                          <div className="col-lg-6">
-                            <div className="card shadow-sm">
-                              <div className="card-body">
-                                <canvas id="lineChart" />
-                              </div>
-                            </div>
+                          <div className="col-6 text-end">
+                            <span className="card-text text-end">Search :</span>{" "}
+                            <input />
                           </div>
                         </div>
+                        {/* <button className="btn btn-primary">Add Product</button> */}
+                        <table className="table table-hover text-center mt-4 mx-auto">
+                          <thead>
+                            <tr>
+                              <th scope="col">ID</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Image</th>
+                              <th scope="col">Email</th>
+                              <th scope="col">Address</th>
+                              <th scope="col">Role</th>
+                              {/* <th scope="col">Delete</th>
+      <th scope="col">Update</th> */}
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {users.map((user) => (
+                              <tr key={user.id}>
+                                <td style={{ paddingTop: "30px" }}>
+                                  {user.id}
+                                </td>
+                                <td style={{ paddingTop: "30px" }}>
+                                  {user.name}
+                                </td>
+                                <td>
+                                  <img
+                                    style={{ width: "80px" }}
+                                    src={`http://localhost:8000/avatars/${user.image}`}
+                                    alt={user.name}
+                                  />
+                                </td>
+                                <td style={{ paddingTop: "30px" }}>
+                                  {user.email}
+                                </td>
+                                <td style={{ paddingTop: "30px" }}>
+                                  {user.address}
+                                </td>
+                                <td
+                                  style={{ paddingTop: "30px", width: "113px" }}
+                                >
+                                  <select
+                                    className="form-select"
+                                    value={user.role}
+                                    onChange={(e) =>
+                                      handleRoleChange(user.id, e.target.value)
+                                    }
+                                  >
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
+                                  </select>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
                       </div>
                     </div>
                   </div>

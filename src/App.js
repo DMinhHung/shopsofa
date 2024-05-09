@@ -35,6 +35,8 @@ import Order from "./container/admin/Order";
 import Login from "./container/user/login/Login";
 import Register from "./container/user/login/Register";
 import Profile from "./container/user/auth/Profile";
+import Description from "./components/user/ProductDetail/Description";
+import Info from "./components/user/ProductDetail/Info";
 
 const initialOptions = {
   "client-id":
@@ -72,6 +74,10 @@ const UserRoutes = () => {
       <Route path="/shoppingcart" element={<ShoppingCart />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/thanks" element={<Thankyou />} />
+      {/* NavTab */}
+      <Route path="/description" element={<Description />} />
+      <Route path="/info" element={<Info />} />
+      {/* NavTab */}
       {/* Routes đăng nhập */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
